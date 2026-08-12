@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#20253A">
+<link rel="stylesheet" href="_ds/natural-state-design-system-019df9aa-a367-7899-b1ed-f3a99f259508/colors_and_type.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap">
+<script src="_ds/natural-state-design-system-019df9aa-a367-7899-b1ed-f3a99f259508/_ds_bundle.js"></script>
+<script src="./ar-elevation.js"></script>
+<script src="./topo-texture.js"></script>
+<style>
+  :root { color-scheme: light only;
+    --ns-arctic:#F5F4E1; --ns-midnight:#20253A; --ns-bronze:#B79550; --ns-cream:#F6E7D7; --ns-haze:#EFD7C5;
+    --ns-bronze-dark:#97793c; --ns-bronze-ink:#7A5F28; --ns-bronze-light:#cdb074;
+    --text-strong:#20253A; --text-body:rgba(32,37,58,0.88); --text-muted:rgba(32,37,58,0.78); --text-faint:rgba(32,37,58,0.62);
+    --hair:rgba(32,37,58,0.12);
+    --font-display:'Burford','Playfair Display',Georgia,serif;
+    --font-sans:'Work Sans',system-ui,-apple-system,sans-serif;
+    --font-label:'Caligor Sans','Work Sans',sans-serif;
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body { margin:0; background:#F5F4E1; color:#20253A; font-family:var(--font-sans); -webkit-font-smoothing:antialiased; }
+  p { line-height:1.72; text-wrap:pretty; }
+  a { color:#B79550; text-decoration:none; }
+  a:hover { color:#97793c; }
+  ::selection { background:rgba(183,149,80,0.28); color:#20253A; }
+  input { font-family:var(--font-sans); }
+  input::placeholder { color:rgba(32,37,58,.42); }
+  .ns-on-dark input { color:#F5F4E1; }
+  .ns-on-dark input::placeholder { color:rgba(245,244,225,.5); }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline:2px solid #7A5F28; outline-offset:3px; }
+  [role="tabpanel"]:focus { outline:none; }
+
+  @keyframes nsRise { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+  .ns-in { animation:nsRise .9s cubic-bezier(.2,.7,.25,1) both; }
+  .ns-step:hover .ns-step-num { color:#20253A; }
+  .ns-faq { transition:background .25s cubic-bezier(.2,.7,.25,1); }
+  .ns-faq:hover { background:rgba(183,149,80,.06); }
+  .ns-tab { transition:color .2s ease, background .2s ease; }
+  .ns-tab:hover { color:#20253A; }
+  .ns-tabs::-webkit-scrollbar { height:0; }
+  .ns-door { transition:background .2s cubic-bezier(.2,.7,.25,1), color .2s ease, box-shadow .2s ease, transform .2s ease; }
+  .ns-door:hover { background:#20253A; color:#F5F4E1; transform:translateY(-2px); box-shadow:0 10px 26px rgba(32,37,58,.16); }
+  .ns-door:hover .ns-door-mark::before { background:#F5F4E1; }
+  .ns-door:hover .ns-door-mark::after { background:#20253A; }
+  .ns-navpin, .ns-door-mark { position:relative; width:13px; height:18px; flex:none; }
+  .ns-navpin::before, .ns-door-mark::before { content:""; position:absolute; left:0; top:0; width:13px; height:13px; background:#B79550; border-radius:50% 50% 50% 0; transform:rotate(-45deg); }
+  .ns-navpin::after, .ns-door-mark::after { content:""; position:absolute; left:4.5px; top:4.5px; width:4px; height:4px; border-radius:50%; background:#F5F4E1; }
+  .ns-form { transition:background .22s cubic-bezier(.2,.7,.25,1); }
+  .ns-form:hover { background:rgba(183,149,80,.08); }
+
+  @media (max-width: 900px) {
+    .ns-2col { grid-template-columns:1fr !important; }
+    .ns-step { grid-template-columns:44px 1fr !important; }
+    .ns-conds { columns:1 !important; }
+    .ns-doors { grid-template-columns:1fr !important; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ns-in { animation:none !important; }
+    .ns-door:hover { transform:none; }
+  }
+</style>
+</helmet>
+
+<div style="position:relative; overflow-x:clip; background:#F5F4E1; min-height:100svh">
+
+  <header style="position:sticky; top:0; z-index:60; background:rgba(245,244,225,.92); backdrop-filter:blur(12px) saturate(1.05); -webkit-backdrop-filter:blur(12px) saturate(1.05); border-bottom:1px solid var(--hair)">
+    <div style="max-width:1180px; margin:0 auto; padding:0 clamp(20px,5vw,48px); height:62px; display:flex; align-items:center; justify-content:space-between; gap:20px">
+      <a href="Natural State Medicinals.dc.html#doors" style="display:flex; align-items:center; gap:11px">
+        <span class="ns-navpin" aria-hidden="true"></span><img src="assets/brand/nav-mark-fanleaf-gold.png" alt="" style="width:23px; height:21px; object-fit:contain">
+        <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#20253A">Natural State Medicinals</span>
+      </a>
+      <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--ns-bronze-ink)">{{ activeLabel }}</span>
+    </div>
+  </header>
+
+  <section style="position:relative; padding:clamp(44px,6vw,88px) clamp(20px,5vw,48px) clamp(30px,4vw,52px); overflow:hidden">
+    <topo-texture opacity="0.05"></topo-texture>
+    <div style="position:relative; max-width:1180px; margin:0 auto">
+      <div class="ns-in">
+        <span style="font-family:var(--font-label); font-size:11px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--ns-bronze-ink)">Arkansas patients</span>
+        <h1 style="margin:16px 0 0; font-family:var(--font-display); font-weight:400; font-size:clamp(38px,5.4vw,74px); line-height:1.02; letter-spacing:.005em; text-wrap:balance">How to get a card</h1>
+      </div>
+      <p class="ns-in" style="margin:clamp(20px,3vw,30px) 0 0; max-width:58ch; font-size:clamp(17px,1.6vw,21px); color:var(--text-body); animation-delay:.12s">A card takes about two weeks. It costs fifty dollars to the state. It comes down to a doctor's signature and one form. That is the whole shape of it.</p>
+
+      <div class="ns-in ns-doors" style="margin-top:clamp(26px,3.5vw,42px); display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(12px,1.6vw,20px); max-width:920px; animation-delay:.2s">
+        <sc-for list="{{ doors }}" as="d" hint-placeholder-count="3">
+          <button class="ns-door" type="button" onClick="{{ d.onPick }}" style="display:flex; align-items:center; gap:14px; min-height:74px; padding:16px 22px; background:#F6E7D7; border:1px solid rgba(32,37,58,.16); border-radius:5px; cursor:pointer; text-align:left; font-family:var(--font-sans); color:#20253A">
+            <span class="ns-door-mark" aria-hidden="true"></span>
+            <span>
+              <span style="display:block; font-size:17px; font-weight:600; letter-spacing:.01em">{{ d.label }}</span>
+              <span style="display:block; margin-top:3px; font-size:13.5px; line-height:1.45; opacity:.72">{{ d.note }}</span>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <div class="ns-anchor" aria-hidden="true" style="height:0"></div>
+  <nav class="ns-tabs" aria-label="Sections of this guide" style="position:sticky; top:62px; z-index:55; background:rgba(245,244,225,.94); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-top:1px solid var(--hair); border-bottom:1px solid var(--hair); overflow-x:auto">
+    <div role="tablist" aria-label="Sections of this guide" onKeyDown="{{ onTabKeys }}" style="max-width:1180px; margin:0 auto; padding:0 clamp(20px,5vw,48px); display:flex; align-items:stretch; gap:clamp(6px,1.4vw,18px); white-space:nowrap">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="7">
+        <button class="ns-tab" type="button" role="tab" id="{{ t.tabId }}" aria-selected="{{ t.selected }}" aria-controls="{{ t.panelId }}" tabIndex="{{ t.tabIndex }}" data-tab="{{ t.id }}" onClick="{{ t.onPick }}" style="display:flex; align-items:center; gap:8px; min-height:52px; padding:0 6px; background:none; border:none; border-bottom:3px solid {{ t.rule }}; cursor:pointer; font-family:var(--font-label); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; font-weight:{{ t.weight }}; color:{{ t.color }}">
+          <span style="width:5px; height:5px; border-radius:50%; background:{{ t.dot }}"></span>{{ t.label }}
+        </button>
+      </sc-for>
+    </div>
+  </nav>
+
+  <div ref="{{ panelRef }}" style="opacity:{{ panelOp }}; transition:opacity .18s ease">
+
+    <sc-if value="{{ isStart }}" hint-placeholder-val="{{ true }}">
+      <section role="tabpanel" id="panel-start" aria-labelledby="tab-start" tabIndex="-1" style="position:relative; padding:clamp(40px,5.5vw,84px) clamp(20px,5vw,48px)">
+        <div style="max-width:1180px; margin:0 auto">
+          <div style="display:flex; align-items:baseline; gap:18px; flex-wrap:wrap">
+            <h2 style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(28px,3.4vw,44px); line-height:1">Start here</h2>
+            <contour-rule style="flex:1; min-width:60px"></contour-rule>
+          </div>
+          <div style="margin-top:clamp(20px,3vw,32px); max-width:68ch">
+            <p style="margin:0 0 16px; font-size:clamp(17px,1.5vw,20px); color:var(--text-body)">In 2016 the people of Arkansas voted yes. That is how this started. Medicine, from a plant, for people who are sick. The state says you may have it if you carry a card. The card comes from the Department of Health. Not from a store. Not from us.</p>
+            <p style="margin:0 0 16px; font-size:clamp(17px,1.5vw,20px); color:var(--text-body)">It costs fifty dollars. It takes about two weeks. There is a form, a doctor, and some waiting by the mailbox.</p>
+            <p style="margin:0; font-size:clamp(16px,1.4vw,18px); color:var(--text-muted)">We grow the plant. We do not sell the card, and we get nothing if you apply. We wrote this down because people keep paying twice for the same mistakes, and there is no good reason for that.</p>
+          </div>
+          <div style="margin-top:clamp(28px,4vw,44px); border-top:1px solid #B79550; padding-top:22px; display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:clamp(16px,2.4vw,32px); max-width:900px">
+            <sc-for list="{{ shape }}" as="s" hint-placeholder-count="3">
+              <div>
+                <span style="display:block; font-family:var(--font-display); font-size:clamp(30px,3.4vw,42px); line-height:1; color:var(--text-strong)">{{ s.big }}</span>
+                <span style="display:block; margin-top:8px; font-size:15px; line-height:1.55; color:var(--text-muted)">{{ s.note }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isSteps }}" hint-placeholder-val="{{ false }}">
+      <section role="tabpanel" id="panel-steps" aria-labelledby="tab-steps" tabIndex="-1" style="padding:clamp(40px,5.5vw,84px) clamp(20px,5vw,48px)">
+        <div style="max-width:1180px; margin:0 auto">
+          <div style="display:flex; align-items:baseline; gap:18px; flex-wrap:wrap">
+            <h2 style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(28px,3.4vw,44px); line-height:1">The five steps</h2>
+            <contour-rule style="flex:1; min-width:60px"></contour-rule>
+          </div>
+          <p style="margin:18px 0 clamp(24px,3.5vw,40px); max-width:64ch; font-size:16.5px; color:var(--text-muted)">Each step starts with what has to be true, then what you do about it.</p>
+          <div style="display:grid; gap:2px; background:var(--hair); border-top:1px solid var(--hair); border-bottom:1px solid var(--hair)">
+            <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+              <div class="ns-step" style="background:#F5F4E1; display:grid; grid-template-columns:64px 1fr; gap:clamp(16px,3vw,44px); padding:clamp(24px,3vw,36px) 4px">
+                <span class="ns-step-num" style="font-family:var(--font-display); font-size:clamp(30px,3vw,40px); line-height:.85; color:var(--ns-bronze-ink); transition:color .3s ease">{{ s.num }}</span>
+                <div>
+                  <h3 style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(24px,2.6vw,34px); line-height:1.04; letter-spacing:.005em">{{ s.title }}</h3>
+                  <div style="margin-top:14px; display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:baseline; max-width:70ch">
+                    <span style="font-family:var(--font-label); font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--ns-bronze-ink)">Must be true</span>
+                    <span style="font-size:15.5px; line-height:1.6; color:var(--text-strong); font-weight:500">{{ s.must }}</span>
+                  </div>
+                  <p style="margin:14px 0 0; max-width:70ch; font-size:16.5px; color:var(--text-body)">{{ s.body }}</p>
+                  <div style="margin-top:16px; display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:start; max-width:64ch; border-left:1px solid #B79550; padding:2px 0 2px 16px">
+                    <span style="font-family:var(--font-label); font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--ns-bronze-dark)">Watch out</span>
+                    <span style="font-size:15px; line-height:1.62; color:var(--text-muted)">{{ s.watch }}</span>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="margin-top:clamp(30px,4vw,48px); border-top:1px solid #B79550; padding-top:24px">
+            <h3 style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(22px,2.4vw,30px); line-height:1">The forms themselves</h3>
+            <p style="margin:12px 0 0; max-width:62ch; font-size:15.5px; color:var(--text-muted)">These come straight from the state. The patient application already has the doctor's page inside it, so print the whole thing and take it with you.</p>
+            <div style="margin-top:22px; display:grid; gap:1px; background:var(--hair); border-top:1px solid var(--hair); border-bottom:1px solid var(--hair)">
+              <sc-for list="{{ forms }}" as="f" hint-placeholder-count="4">
+                <a class="ns-form" href="{{ f.href }}" target="_blank" rel="noopener" style="background:#F5F4E1; display:grid; grid-template-columns:1fr auto; gap:18px; align-items:center; padding:18px 6px">
+                  <span>
+                    <span style="display:block; font-family:var(--font-sans); font-size:16.5px; font-weight:500; color:var(--text-strong)">{{ f.name }}</span>
+                    <span style="display:block; margin-top:5px; max-width:66ch; font-size:14.5px; line-height:1.6; color:var(--text-muted)">{{ f.note }}</span>
+                  </span>
+                  <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--ns-bronze-dark); white-space:nowrap">{{ f.cta }} →</span>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="margin-top:clamp(24px,3vw,36px); display:flex; gap:12px; flex-wrap:wrap">
+            <a href="https://mmj.adh.arkansas.gov/?action=registration" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; min-height:54px; padding:0 28px; background:#B79550; color:#20253A; border-radius:5px; font-size:14px; font-weight:600; letter-spacing:.04em; box-shadow:0 6px 22px rgba(183,149,80,.28)" style-hover="background:#97793c; color:#20253A">Start your application at the state portal</a>
+            <a href="https://www.healthy.arkansas.gov/programs-services/data-statistics-registries/medical-marijuana/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; min-height:54px; padding:0 28px; color:#20253A; border:1px solid #20253A; border-radius:5px; font-size:14px; font-weight:600; letter-spacing:.04em" style-hover="background:#20253A; color:#F5F4E1">Read the state's own page</a>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isEligible }}" hint-placeholder-val="{{ false }}">
+      <section role="tabpanel" id="panel-eligible" aria-labelledby="tab-eligible" tabIndex="-1" class="ns-on-dark" style="position:relative; padding:clamp(40px,5.5vw,84px) clamp(20px,5vw,48px); background:#20253A; overflow:hidden">
+        <topo-texture ink="245,244,225" opacity="0.05"></topo-texture>
+        <div style="position:relative; max-width:1180px; margin:0 auto">
+          <div class="ns-2col" style="display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(26px,5vw,72px); align-items:start">
+            <div>
+              <h2 style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(28px,3.4vw,44px); line-height:1.02; color:var(--ns-arctic)">Am I eligible</h2>
+              <contour-rule color="#B79550" style="max-width:220px; margin-top:14px"></contour-rule>
+              <p style="margin:18px 0 0; font-size:16.5px; color:rgba(245,244,225,.82)">Three things about you, and one thing about your health. Your doctor has to write down one of the conditions on the state list. Not something near it. One of these.</p>
+              <div style="margin-top:24px; display:grid; gap:1px; background:rgba(245,244,225,.14)">
+                <sc-for list="{{ basics }}" as="b" hint-placeholder-count="3">
+                  <div style="background:#20253A; padding:16px 0">
+                    <span style="display:block; font-size:16.5px; font-weight:500; color:var(--ns-arctic)">{{ b.title }}</span>
+                    <span style="display:block; margin-top:6px; max-width:52ch; font-size:15px; line-height:1.62; color:rgba(245,244,225,.72)">{{ b.note }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <p style="margin:22px 0 0; font-size:15px; color:rgba(245,244,225,.62)">Anxiety by itself is not on the list. Depression by itself is not on the list. People find that out after they have already paid, which is a rotten way to find anything out.</p>
+            </div>
+            <div>
+              <label style="display:block">
+                <span style="display:block; font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:rgba(245,244,225,.6)">Search the eighteen conditions</span>
+                <input type="search" value="{{ condQuery }}" onInput="{{ onCondSearch }}" placeholder="Type a word, like pain or cancer" style="margin-top:10px; width:100%; min-height:52px; padding:0 16px; background:rgba(245,244,225,.06); border:1px solid rgba(245,244,225,.28); border-radius:4px; font-size:16px">
+              </label>
+              <div style="margin-top:12px; font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:rgba(245,244,225,.5)">{{ condCount }}</div>
+              <div class="ns-conds" style="margin-top:14px; columns:2; column-gap:36px">
+                <sc-for list="{{ conditions }}" as="c" hint-placeholder-count="18">
+                  <div style="break-inside:avoid; display:grid; grid-template-columns:26px 1fr; gap:10px; padding:11px 0; border-bottom:1px solid rgba(245,244,225,.12)">
+                    <span style="font-family:var(--font-label); font-size:10px; font-weight:600; letter-spacing:.12em; color:rgba(183,149,80,.85); padding-top:4px">{{ c.num }}</span>
+                    <span style="font-size:15.5px; line-height:1.5; color:rgba(245,244,225,.9)">{{ c.name }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <p style="margin:20px 0 0; font-size:15px; color:rgba(245,244,225,.62)">The list has not grown since 2016. People petition the Health Department to add to it, and so far nothing has been added.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isCosts }}" hint-placeholder-val="{{ false }}">
+      <section role="tabpanel" id="panel-costs" aria-labelledby="tab-costs" tabIndex="-1" style="padding:clamp(40px,5.5vw,84px) clamp(20px,5vw,48px)">
+        <div style="max-width:1180px; margin:0 auto">
+          <div class="ns-2col" style="display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,5vw,72px)">
+            <div>
+              <h2 style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(26px,3vw,40px); line-height:1">What it costs</h2>
+              <contour-rule style="margin:14px 0 20px"></contour-rule>
+              <sc-for list="{{ costs }}" as="c" hint-placeholder-count="3">
+                <div style="display:flex; align-items:baseline; justify-content:space-between; gap:20px; padding:14px 0; border-bottom:1px solid var(--hair)">
+                  <span>
+                    <span style="display:block; font-size:16px; font-weight:500; color:var(--text-strong)">{{ c.label }}</span>
+                    <span style="display:block; margin-top:4px; max-width:44ch; font-size:14px; line-height:1.55; color:var(--text-muted)">{{ c.note }}</span>
+                  </span>
+                  <span style="font-family:var(--font-display); font-size:24px; line-height:1; color:var(--text-strong); white-space:nowrap">{{ c.amount }}</span>
+                </div>
+              </sc-for>
+              <p style="margin:18px 0 0; max-width:52ch; font-size:14.5px; color:var(--text-muted)">Figure on two hundred to three hundred dollars the first year, and about the same every year after. It is real money. For a lot of people it is still cheaper than the month of pills it replaces.</p>
+            </div>
+            <div>
+              <h2 style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(26px,3vw,40px); line-height:1">What a card does not do</h2>
+              <contour-rule style="margin:14px 0 20px"></contour-rule>
+              <sc-for list="{{ limits }}" as="l" hint-placeholder-count="5">
+                <div style="display:grid; grid-template-columns:18px 1fr; gap:14px; padding:13px 0; border-bottom:1px solid var(--hair)">
+                  <span style="color:var(--ns-bronze-ink); font-size:15px; line-height:1.5">·</span>
+                  <span style="font-size:15.5px; line-height:1.6; color:var(--text-body)">{{ l }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isCaregivers }}" hint-placeholder-val="{{ false }}">
+      <section role="tabpanel" id="panel-caregivers" aria-labelledby="tab-caregivers" tabIndex="-1" style="padding:clamp(40px,5.5vw,84px) clamp(20px,5vw,48px); background:#EFD7C5">
+        <div style="max-width:1180px; margin:0 auto">
+          <div style="max-width:66ch">
+            <h2 style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(28px,3.2vw,42px); line-height:1.02">Somebody can carry it for you</h2>
+            <contour-rule style="margin:14px 0 0"></contour-rule>
+            <p style="margin:18px 0 0; font-size:17px; color:var(--text-body)">Not everybody can drive to a store. Some people are too sick that week. Some people are ten years old. So the state lets one person do that work for somebody else. That person is called a caregiver, and they go on the registry too.</p>
+          </div>
+          <div style="margin-top:clamp(24px,3vw,40px); display:grid; gap:1px; background:rgba(32,37,58,.14); border-top:1px solid rgba(32,37,58,.14); border-bottom:1px solid rgba(32,37,58,.14)">
+            <sc-for list="{{ caregiver }}" as="c" hint-placeholder-count="6">
+              <div style="background:#EFD7C5; display:grid; grid-template-columns:56px 1fr; gap:clamp(14px,2.4vw,32px); padding:18px 4px; align-items:baseline">
+                <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.18em; color:var(--ns-bronze-dark)">{{ c.num }}</span>
+                <span>
+                  <span style="display:block; font-size:16.5px; font-weight:500; color:var(--text-strong)">{{ c.title }}</span>
+                  <span style="display:block; margin-top:6px; max-width:70ch; font-size:15.5px; line-height:1.65; color:var(--text-body)">{{ c.body }}</span>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isRenew }}" hint-placeholder-val="{{ false }}">
+      <section role="tabpanel" id="panel-renew" aria-labelledby="tab-renew" tabIndex="-1" style="padding:clamp(40px,5.5vw,84px) clamp(20px,5vw,48px)">
+        <div style="max-width:1180px; margin:0 auto">
+          <div class="ns-2col" style="display:grid; grid-template-columns:1fr 1fr; gap:clamp(30px,5vw,76px)">
+            <div>
+              <h2 style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(26px,3vw,38px); line-height:1.04">Do it early, not late</h2>
+              <contour-rule style="margin:14px 0 0"></contour-rule>
+              <p style="margin:16px 0 0; max-width:52ch; font-size:16.5px; color:var(--text-body)">A card lasts one year. It does not renew itself, and nobody calls to remind you. The day it expires you are back to square one at the counter, so put it on a calendar the day it arrives.</p>
+              <div style="margin-top:22px; border-top:1px solid var(--hair)">
+                <sc-for list="{{ renewal }}" as="r" hint-placeholder-count="5">
+                  <div style="display:grid; grid-template-columns:24px 1fr; gap:12px; padding:14px 0; border-bottom:1px solid var(--hair)">
+                    <span style="color:var(--ns-bronze-ink); font-size:15px; line-height:1.5">·</span>
+                    <span style="font-size:15.5px; line-height:1.65; color:var(--text-body)">{{ r }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div>
+              <h2 style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(26px,3vw,38px); line-height:1.04">Coming in from out of state</h2>
+              <contour-rule style="margin:14px 0 0"></contour-rule>
+              <p style="margin:16px 0 0; max-width:52ch; font-size:16.5px; color:var(--text-body)">Your card from home will not work at an Arkansas register. It is not the store being difficult. It is the law. But if you already hold a card somewhere else, Arkansas will sell you a short visitor card of your own.</p>
+              <div style="margin-top:22px; border-top:1px solid var(--hair)">
+                <sc-for list="{{ visiting }}" as="v" hint-placeholder-count="5">
+                  <div style="display:grid; grid-template-columns:24px 1fr; gap:12px; padding:14px 0; border-bottom:1px solid var(--hair)">
+                    <span style="color:var(--ns-bronze-ink); font-size:15px; line-height:1.5">·</span>
+                    <span style="font-size:15.5px; line-height:1.65; color:var(--text-body)">{{ v }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isFaq }}" hint-placeholder-val="{{ false }}">
+      <section role="tabpanel" id="panel-faq" aria-labelledby="tab-faq" tabIndex="-1" style="padding:clamp(40px,5.5vw,84px) clamp(20px,5vw,48px)">
+        <div style="max-width:900px; margin:0 auto">
+          <h2 style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(28px,3.4vw,44px); line-height:1">Questions people actually ask</h2>
+          <contour-rule style="margin:14px 0 clamp(18px,2.5vw,28px)"></contour-rule>
+          <div style="border-top:1px solid var(--hair)">
+            <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="8">
+              <div style="border-bottom:1px solid var(--hair)">
+                <button class="ns-faq" type="button" onClick="{{ f.onToggle }}" aria-expanded="{{ f.open }}" style="display:grid; grid-template-columns:1fr 26px; gap:16px; align-items:center; width:100%; min-height:60px; background:none; border:none; padding:18px 6px; cursor:pointer; text-align:left">
+                  <span style="font-family:var(--font-sans); font-size:clamp(16px,1.4vw,18px); font-weight:500; color:var(--text-strong)">{{ f.q }}</span>
+                  <span style="justify-self:end; color:var(--ns-bronze-ink); font-size:18px; line-height:1">{{ f.caret }}</span>
+                </button>
+                <div style="overflow:hidden; max-height:{{ f.maxH }}; opacity:{{ f.op }}; transition:max-height .45s cubic-bezier(.2,.7,.25,1), opacity .35s ease">
+                  <p style="margin:0; padding:0 6px 22px; max-width:74ch; font-size:16px; color:var(--text-body)">{{ f.a }}</p>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+  </div>
+
+  <section style="padding:clamp(28px,4vw,52px) clamp(20px,5vw,48px) clamp(48px,6vw,80px)">
+    <div style="max-width:1180px; margin:0 auto; border-top:1px solid var(--hair); padding-top:clamp(24px,3.5vw,40px); display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap">
+      <a href="Natural State Medicinals.dc.html#doors" style="font-family:var(--font-display); font-weight:400; font-size:clamp(22px,2.4vw,32px); line-height:1; color:var(--text-strong)" style-hover="color:#97793c">← Back to the front</a>
+      <a href="https://mdedman-tech.github.io/Natural-State-Education-Guide/" target="_blank" rel="noopener" style="font-family:var(--font-label); font-size:11px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--ns-bronze-dark)">Card in hand? Read the guide →</a>
+    </div>
+  </section>
+
+  <footer style="background:#20253A; padding:clamp(34px,4vw,54px) clamp(20px,5vw,48px)">
+    <div style="max-width:1180px; margin:0 auto; display:grid; gap:14px">
+      <span style="display:flex; align-items:center; gap:12px">
+        <img src="assets/brand/nav-mark-fanleaf-gold.png" alt="" style="width:24px; height:22px; object-fit:contain">
+        <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:rgba(245,244,225,.72)">Natural State Medicinals</span>
+      </span>
+      <span style="font-size:12px; line-height:1.7; color:rgba(245,244,225,.5); max-width:82ch">{{ sourceNote }}</span>
+      <span style="font-size:12px; line-height:1.7; color:rgba(245,244,225,.5); max-width:82ch">{{ compliance }}</span>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;federalPosture&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Compliance&quot;}}">
+const TABS = [
+  ['start', 'Start here'],
+  ['steps', 'The steps'],
+  ['eligible', 'Am I eligible'],
+  ['costs', 'Costs'],
+  ['caregivers', 'Caregivers'],
+  ['renew', 'Renew and visit'],
+  ['faq', 'Questions']
+];
+
+class Component extends DCLogic {
+  state = { tab: 'start', openFaq: null, condQuery: '', fading: false };
+
+  componentDidMount() {
+    this._panel = React.createRef ? null : null;
+    const fromHash = () => {
+      const id = (location.hash || '').replace('#', '');
+      return TABS.some(t => t[0] === id) ? id : null;
+    };
+    const start = fromHash();
+    if (start && start !== this.state.tab) {
+      this.setState({ tab: start }, () => setTimeout(() => this._parkNav(false), 60));
+    }
+    this._onPop = () => {
+      const id = fromHash() || 'start';
+      this.setState({ tab: id, fading: false });
+    };
+    addEventListener('popstate', this._onPop);
+  }
+  componentWillUnmount() {
+    if (this._onPop) removeEventListener('popstate', this._onPop);
+    clearTimeout(this._fadeT);
+    if (this._scrollRaf) cancelAnimationFrame(this._scrollRaf);
+  }
+
+  // Park the tab bar just under the header so the chosen panel starts at the
+  // top of the reader's view. Never scroll backwards on someone already deeper.
+  // Park the tab bar directly under the header, in either direction, so the
+  // panel the reader just chose always starts at the top of the reading area.
+  // A sticky element's rect is clamped once pinned, so measure its document
+  // offset instead, and tween by hand because smooth scrollTo is inert here.
+  _parkNav(smooth) {
+    const anchor = document.querySelector('.ns-anchor');
+    if (!anchor) return;
+    const target = Math.max(0, Math.round(window.scrollY + anchor.getBoundingClientRect().top - 62));
+    const from = window.scrollY;
+    if (Math.abs(target - from) <= 1) return;
+    if (this._scrollRaf) cancelAnimationFrame(this._scrollRaf);
+    if (!smooth) { window.scrollTo(0, target); return; }
+    const t0 = performance.now(), dur = 340;
+    const step = (now) => {
+      const p = Math.min(1, (now - t0) / dur);
+      const e = 1 - Math.pow(1 - p, 3);
+      window.scrollTo(0, Math.round(from + (target - from) * e));
+      if (p < 1) this._scrollRaf = requestAnimationFrame(step);
+      else this._scrollRaf = 0;
+    };
+    this._scrollRaf = requestAnimationFrame(step);
+  }
+
+  _select(id, push, fromKeys) {
+    if (id === this.state.tab) return;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._parkNav(!reduce);
+    const swap = () => {
+      this.setState({ tab: id, fading: false }, () => {
+        this._parkNav(!reduce);
+        // Keyboard users stay in the tablist so arrow keys keep working.
+        const el = document.getElementById(fromKeys ? 'tab-' + id : 'panel-' + id);
+        if (el) el.focus({ preventScroll: true });
+      });
+    };
+    if (push !== false && location.hash !== '#' + id) {
+      try { history.pushState({ tab: id }, '', '#' + id); } catch (e) {}
+    }
+    if (reduce) { swap(); return; }
+    this.setState({ fading: true });
+    clearTimeout(this._fadeT);
+    this._fadeT = setTimeout(swap, 160);
+  }
+
+  renderVals() {
+    const st = this.state;
+    const federal = !!this.props.federalPosture;
+    const active = st.tab;
+    const activeIndex = Math.max(0, TABS.findIndex(t => t[0] === active));
+
+    const tabs = TABS.map((t, i) => {
+      const on = t[0] === active;
+      return {
+        id: t[0], label: t[1], tabId: 'tab-' + t[0], panelId: 'panel-' + t[0],
+        selected: on ? 'true' : 'false', tabIndex: on ? 0 : -1,
+        color: on ? '#20253A' : 'rgba(32,37,58,0.62)',
+        rule: on ? '#B79550' : 'transparent',
+        dot: on ? '#B79550' : 'transparent',
+        weight: on ? 700 : 600,
+        onPick: () => this._select(t[0])
+      };
+    });
+
+    const onTabKeys = (e) => {
+      const k = e.key;
+      // Roving tabindex: move relative to the button that actually has focus.
+      const focused = document.activeElement && document.activeElement.getAttribute
+        ? document.activeElement.getAttribute('data-tab') : null;
+      const fromIdx = focused ? TABS.findIndex(t => t[0] === focused) : -1;
+      const cur = fromIdx >= 0 ? fromIdx : activeIndex;
+      let next = null;
+      if (k === 'ArrowRight' || k === 'ArrowDown') next = (cur + 1) % TABS.length;
+      else if (k === 'ArrowLeft' || k === 'ArrowUp') next = (cur - 1 + TABS.length) % TABS.length;
+      else if (k === 'Home') next = 0;
+      else if (k === 'End') next = TABS.length - 1;
+      if (next === null) return;
+      e.preventDefault();
+      const id = TABS[next][0];
+      const btn = document.getElementById('tab-' + id);
+      if (btn) btn.focus();
+      this._select(id, true, true);
+    };
+
+    const doors = [
+      { label: 'Am I eligible?', note: 'The conditions, and who can apply', to: 'eligible' },
+      { label: 'What does it cost?', note: 'Every dollar, start to finish', to: 'costs' },
+      { label: 'Walk me through it', note: 'Five steps, in order', to: 'steps' }
+    ].map(d => Object.assign({}, d, { onPick: () => this._select(d.to) }));
+
+    const steps = [
+      { num: '01', title: 'Get your ID in order',
+        must: 'You live in Arkansas, and your ID says so.',
+        body: 'The state wants a photocopy of the front of your Arkansas license or state ID, printed on a full sheet of paper. If you moved, go change the address first. Stand in that line once now, or stand in it twice later.',
+        watch: 'A card from another state will not work here. If you live somewhere else, you want the visiting patient card instead.' },
+      { num: '02', title: 'See a doctor and get it in writing',
+        must: 'You have a condition on the state list, and you can see an Arkansas M.D. or D.O.',
+        body: 'A doctor looks you over and signs one page. It is called a written certification, and it names your condition. A video visit counts. Some family doctors will sign it. Some will not, and they do not always say why. A nurse practitioner cannot sign it. Neither can a physician assistant.',
+        watch: 'That signature goes stale in thirty days. If the state gets your papers on day thirty one, the page is worth nothing and you pay for another visit. Send it the same week you get it.' },
+      { num: '03', title: 'Send it all to the state',
+        must: 'You have fifty dollars for the state, and it is not refundable.',
+        body: 'Four things go to the Department of Health: the application, the doctor\u2019s page, the copy of your ID, and the fifty dollars. Most people do it on the state website. You can mail it to Little Rock instead if that suits you better.',
+        watch: 'If one thing is missing, they send it back. They do not hold it and wait for you. Read your own name out loud against your ID before you send it, letter for letter.' },
+      { num: '04', title: 'Wait by the mailbox',
+        must: 'You can wait up to fourteen days without shopping.',
+        body: 'The state gets up to fourteen days. Then a real card comes in a real envelope. Arkansas does not make temporary cards, and nothing on your phone counts. The card in your hand is the card.',
+        watch: 'Do not drive to a dispensary before it comes. An email that says approved will not get you through the door, and it is a long way back home.' },
+      { num: '05', title: 'Go get your medicine',
+        must: 'You are not in the military or the National Guard. Federal law still says no.',
+        body: 'Bring the card. Bring your ID. You may buy two and a half ounces every fourteen days. The state counts it across every store, so the person at the counter can tell you exactly where you stand. Ask questions. That is what they are there for.',
+        watch: 'Ask for Natural State by name. What a store keeps on the shelf changes week to week, and asking is how they learn what to order.' }
+    ];
+
+    const basics = [
+      { title: 'You live in Arkansas, and your ID says so',
+        note: 'The state wants a copy of the front of your Arkansas license or state ID. If the address on it is old, go fix that first. It is the number one reason people get sent home.' },
+      { title: 'You can see an Arkansas M.D. or D.O.',
+        note: 'A medical doctor or a doctor of osteopathy licensed in Arkansas. A nurse practitioner cannot sign it. Neither can a physician assistant or a pharmacist.' },
+      { title: 'You are not in the military or the Guard',
+        note: 'Cannabis is still against federal law. Service members cannot hold a card. That is Washington\u2019s rule, not Arkansas\u2019s, and no one here can wave it away.' }
+    ];
+
+    const ALL_CONDS = ['Alzheimer\u2019s disease', 'ALS (Lou Gehrig\u2019s disease)', 'Cachexia or wasting syndrome', 'Cancer', 'Crohn\u2019s disease',
+      'Fibromyalgia', 'Glaucoma', 'Hepatitis C', 'HIV / AIDS', 'Intractable pain, unrelieved for six months or more',
+      'Peripheral neuropathy', 'Post traumatic stress disorder', 'Seizures, including epilepsy', 'Severe arthritis',
+      'Severe nausea', 'Severe and persistent muscle spasms, including multiple sclerosis', 'Tourette\u2019s syndrome', 'Ulcerative colitis'];
+    const q = st.condQuery.trim().toLowerCase();
+    const conditions = ALL_CONDS
+      .map((name, i) => ({ name, num: String(i + 1).padStart(2, '0') }))
+      .filter(c => !q || c.name.toLowerCase().indexOf(q) !== -1);
+    const condCount = q
+      ? (conditions.length === 0 ? 'Nothing matches that word. It may not be on the list.'
+        : conditions.length + (conditions.length === 1 ? ' condition matches' : ' conditions match'))
+      : 'Eighteen conditions, all of them';
+
+    const faqs = [
+      { q: 'Can I grow my own?', a: 'No. Not one plant, not in a closet, not for yourself. Arkansas says growing is a felony whether you hold a card or not. Everything legal here comes off a licensed shelf.' },
+      { q: 'How much can I buy?', a: 'Two and a half ounces every fourteen days. The state counts it across every store, so you cannot stretch it by driving to the next town. The person at the counter can look up where you stand.' },
+      { q: 'Will insurance pay for any of it?', a: 'No. None of it. Not the fifty dollars, not the doctor visit, not the medicine. Cannabis is still against federal law, and insurance follows federal law. Plan on paying cash.' },
+      { q: 'Can my own doctor sign it?', a: 'If your doctor is an M.D. or a D.O. licensed in Arkansas, yes, and that is the best way, because they already know your story. Plenty of them will not sign. They are allowed to say no, and they do not have to explain.' },
+      { q: 'Who finds out that I have a card?', a: 'The registry is private. It is not a public list, and your neighbors cannot look you up. It does mean that under federal law you cannot buy a gun. Better to know that now than at a counter.' },
+      { q: 'What if they turn me down?', a: 'They send it back and they tell you why. It is almost always one small thing: a signature past thirty days, a wrong address, a condition that is not on the list. Fix that one thing and send it again. It happens to a lot of people.' },
+      { q: 'Can I take it with me on a trip?', a: 'No. Some states honor a card from somewhere else, most do not, and either way the road between them belongs to the federal government. Leave it at home.' },
+      { q: 'What if I lose the card?', a: 'Call the Department of Health and ask for a replacement. Do not shop without it. A store cannot sell to you on your word, and they are not being unkind, they are keeping their license.' }
+    ].map((f, i) => {
+      const open = st.openFaq === i;
+      return Object.assign({}, f, {
+        open: open ? 'true' : 'false', caret: open ? '\u2212' : '+',
+        maxH: open ? '420px' : '0px', op: open ? '1' : '0',
+        onToggle: () => this.setState(p => ({ openFaq: p.openFaq === i ? null : i }))
+      });
+    });
+
+    return {
+      tabs, onTabKeys, doors, steps, basics, conditions, condCount, faqs,
+      condQuery: st.condQuery,
+      onCondSearch: (e) => this.setState({ condQuery: e.target.value }),
+      panelOp: st.fading ? '0' : '1',
+      activeLabel: TABS[activeIndex][1],
+      isStart: active === 'start', isSteps: active === 'steps', isEligible: active === 'eligible',
+      isCosts: active === 'costs', isCaregivers: active === 'caregivers',
+      isRenew: active === 'renew', isFaq: active === 'faq',
+      shape: [
+        { big: '$50', note: 'To the state, and you do not get it back.' },
+        { big: '14 days', note: 'What the state gets to take once it has everything.' },
+        { big: '1 year', note: 'How long the card lasts before you do it again.' }
+      ],
+      forms: [
+        { name: 'Patient application, with the physician certification inside it',
+          note: 'The one most people need. Your doctor fills out their page, you fill out yours, and it has to reach the state within 30 days of the day your doctor signs it.',
+          cta: 'Download', href: 'https://mmj.adh.arkansas.gov/static/web/media/Patient_Application.pdf' },
+        { name: 'Caregiver application',
+          note: 'For the person who will pick up medicine on a patient\u2019s behalf.',
+          cta: 'Download', href: 'https://mmj.adh.arkansas.gov/static/web/media/Caregiver_Application.pdf' },
+        { name: 'Information change request',
+          note: 'New address, new name, adding or removing a caregiver, or canceling a card.',
+          cta: 'Download', href: 'https://mmj.adh.arkansas.gov/static/web/media/MMJ_Information_Change_Request.pdf' },
+        { name: 'The state portal',
+          note: 'Register, apply online, and check where your application stands.',
+          cta: 'Open', href: 'https://mmj.adh.arkansas.gov/' }
+      ],
+      costs: [
+        { label: 'The state fee', note: 'Goes to the Department of Health. You do not get it back, and renewals cost the same.', amount: '$50' },
+        { label: 'The doctor visit', note: 'The doctor sets this price, not the state. Call two or three and ask. The prices are not the same.', amount: '$150 to $250' },
+        { label: 'Caregiver background check', note: 'Only if somebody else will be doing your buying.', amount: '$34' }
+      ],
+      limits: [
+        'It does not let you grow a plant at home. Not one. That is still a felony in Arkansas.',
+        'It does not change federal law. That matters on federal land, in federal housing, and if you ever want to buy a gun.',
+        'It does not cover driving. If you are impaired, the card will not save you, and neither will we.',
+        'It does not cross a state line. Taking it with you is a federal crime, even into a state that allows it.',
+        'It does not cover anybody else. Handing your medicine to a friend can cost you the card.'
+      ],
+      caregiver: [
+        { num: '01', title: 'Decide who it will be',
+          body: 'A caregiver has to be twenty one or older. They cannot have certain felonies behind them. Pick somebody steady who can get to a store and keep a promise, because they will be holding your medicine.' },
+        { num: '02', title: 'If the patient is a child, it is a parent',
+          body: 'A patient under eighteen never holds the card alone. A custodial parent or a legal guardian signs on as the caregiver. Both of them go on the registry, and the grown up does the buying and the giving.' },
+        { num: '03', title: 'They apply too, at the same time',
+          body: 'The caregiver fills out their own form with the patient\u2019s. Same office, same portal. It is easiest to send both together so the state does not have to match them up later.' },
+        { num: '04', title: 'They pass a background check',
+          body: 'The state runs one and charges thirty four dollars for it. Add that to what you were already planning to spend, and expect it to take a few days of the fourteen.' },
+        { num: '05', title: 'One caregiver, up to five patients',
+          body: 'A caregiver may serve as many as five patients. If everyone is family, the state allows more. This is how one aunt ends up doing the driving for a whole household.' },
+        { num: '06', title: 'What they can and cannot do',
+          body: 'A caregiver may buy, carry, and hand over the medicine. They may not use it themselves unless they hold a card of their own. That line is worth saying out loud once, plainly, and then never crossing.' }
+      ],
+      renewal: [
+        'You can start sixty days before the card expires. Start at sixty. Not at five.',
+        'You need a brand new certification from a doctor. The old page cannot be used twice, no matter how recent it feels.',
+        'It is fifty dollars again, and it is not refundable, same as the first time.',
+        'The state still gets up to fourteen days. That is why the sixty day window exists.',
+        'If the card lapses, nothing bad happens to you. You just cannot buy anything until the new one is in your hand.'
+      ],
+      visiting: [
+        'You need a valid medical card, or the equivalent, from your own state.',
+        'The condition it was issued for has to be on the Arkansas list too. If it is not, Arkansas cannot help you.',
+        'You apply to the Arkansas Department of Health, online, the same as anybody else.',
+        'It costs fifty dollars, and the card is good for a short stay, not the whole year.',
+        'It does not raise any limits, and it does not let you carry anything home. Crossing a state line with cannabis is a federal crime, even between two states that allow it.'
+      ],
+      sourceNote: 'Process, fees, and conditions on this page follow the Arkansas Medical Marijuana Amendment of 2016 (Amendment 98) and the Arkansas Department of Health Medical Marijuana Section rules, current as of August 2026. Rules change. Verify anything that matters at healthy.arkansas.gov before you rely on it.',
+      compliance: federal
+        ? 'For adults 21 and over. Keep out of reach of children. This product is not approved by the FDA to treat, cure, or prevent any disease. Marijuana use during pregnancy or breastfeeding poses potential harms. This site is education, not medical advice.'
+        : 'For use by qualifying patients only. Keep out of reach of children. This product is not approved by the FDA to treat, cure, or prevent any disease. Marijuana use during pregnancy or breastfeeding poses potential harms. This site is education, not medical advice.'
+    };
+  }
+}
+
+</script>
+</body>
+</html>

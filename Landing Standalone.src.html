@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#F5F4E1">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F5F4E1"/>
+    <g fill="none" stroke="#B79550" stroke-width="6" opacity=".55">
+      <path d="M180 470c120-70 250 40 380-30s250-120 460-40"/>
+      <path d="M180 560c120-70 250 40 380-30s250-120 460-40"/>
+      <path d="M180 380c120-70 250 40 380-30s250-120 460-40"/>
+    </g>
+    <path d="M600 250c-38 0-68 30-68 68 0 50 68 112 68 112s68-62 68-112c0-38-30-68-68-68z" fill="#B79550"/>
+    <circle cx="600" cy="318" r="22" fill="#F5F4E1"/>
+  </svg>
+</template>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#20253A">
+<link rel="stylesheet" href="_ds/natural-state-design-system-019df9aa-a367-7899-b1ed-f3a99f259508/colors_and_type.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap">
+<script src="_ds/natural-state-design-system-019df9aa-a367-7899-b1ed-f3a99f259508/_ds_bundle.js"></script>
+<script src="./ar-elevation.js"></script>
+<script src="./arkansas-intro.js"></script>
+<style>
+  :root { color-scheme: light only;
+    --ns-arctic:#F5F4E1; --ns-midnight:#20253A; --ns-bronze:#B79550; --ns-cream:#F6E7D7;
+    --ns-bronze-dark:#97793c; --ns-bronze-light:#cdb074;
+    --text-strong:#20253A; --text-body:rgba(32,37,58,0.88); --text-muted:rgba(32,37,58,0.60);
+    --hair:rgba(32,37,58,0.12);
+    --font-display:'Burford','Playfair Display',Georgia,serif;
+    --font-sans:'Work Sans',system-ui,-apple-system,sans-serif;
+    --font-label:'Caligor Sans','Work Sans',sans-serif;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body { margin:0; background:#121624; color:#20253A; font-family:var(--font-sans); -webkit-font-smoothing:antialiased; }
+  p { line-height:1.7; }
+  a { color:#B79550; text-decoration:none; }
+  a:hover { color:#97793c; }
+  ::selection { background:rgba(183,149,80,0.28); color:#20253A; }
+
+  @keyframes nsMarkIn { from { opacity:0; transform:scale(1.16); filter:blur(7px); } to { opacity:1; transform:scale(1); filter:blur(0); } }
+  @keyframes nsRise { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+  @keyframes nsFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(7px); } }
+  @keyframes nsRule { from { transform:scaleX(0); opacity:0; } to { transform:scaleX(1); opacity:1; } }
+
+  .ns-mark   { animation:nsMarkIn 1.7s cubic-bezier(.2,.7,.25,1) 4.2s both; }
+  .ns-sheen  { opacity:0; transition:opacity 1.2s ease 5.6s; }
+  .ns-lit .ns-sheen { opacity:1; }
+  .ns-estd   { animation:nsRise 1.1s cubic-bezier(.2,.7,.25,1) 5.5s both; }
+  .ns-hrule  { transform-origin:center; animation:nsRule 1.2s cubic-bezier(.2,.7,.25,1) 5.2s both; }
+  .ns-scroll { animation:nsRise 1s cubic-bezier(.2,.7,.25,1) 6.2s both, nsFloat 3s ease-in-out 7.2s infinite; }
+
+  html.ns-skip .ns-mark, html.ns-skip .ns-estd, html.ns-skip .ns-hrule, html.ns-skip .ns-scroll {
+    animation:none !important; opacity:1 !important; transform:none !important; filter:none !important;
+  }
+
+  [data-reveal] { opacity:0; transform:translateY(18px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.25,1); }
+  [data-reveal].is-in { opacity:1; transform:none; }
+
+  /* survey stations */
+  @keyframes nsPing { 0% { transform:scale(.45); opacity:.6; } 70% { transform:scale(2.5); opacity:0; } 100% { transform:scale(2.5); opacity:0; } }
+  .ns-stage:hover .ns-station { opacity:.28; }
+  .ns-stage:hover .ns-station:hover { opacity:1; }
+  .ns-station { transition:opacity .35s cubic-bezier(.2,.7,.25,1); }
+  /* map pin: teardrop head, cast shadow on the ground, survey ring at its base */
+  .ns-pinwrap { position:relative; width:26px; height:34px; flex:none; }
+  .ns-pin { position:absolute; left:4px; top:1px; width:18px; height:18px; background:#B79550; border-radius:50% 50% 50% 0; transform:rotate(-45deg); box-shadow:0 2px 5px rgba(32,37,58,.26); transition:transform .38s cubic-bezier(.2,.7,.25,1), background .3s ease, box-shadow .38s ease; }
+  .ns-pin::after { content:""; position:absolute; left:50%; top:50%; width:6px; height:6px; margin:-3px 0 0 -3px; border-radius:50%; background:#F5F4E1; }
+  .ns-station:hover .ns-pin { transform:rotate(-45deg) translate(2.8px,-2.8px); background:#97793c; box-shadow:0 6px 12px rgba(32,37,58,.3); }
+  .ns-pinshadow { position:absolute; left:7px; bottom:2px; width:12px; height:4px; border-radius:50%; background:rgba(32,37,58,.34); filter:blur(1.5px); transition:transform .38s cubic-bezier(.2,.7,.25,1), opacity .38s ease; }
+  .ns-station:hover .ns-pinshadow { transform:scale(.66); opacity:.55; }
+  .ns-station .ns-lead { transition:width .45s cubic-bezier(.2,.7,.25,1); }
+  .ns-station:hover .ns-lead { width:64px; }
+  .ns-station .ns-title { display:inline-block; transform-origin:left center; transition:transform .4s cubic-bezier(.2,.7,.25,1); }
+  .ns-station:hover .ns-title { transform:translateX(4px) scale(1.045); }
+  .ns-ping { position:absolute; left:4px; bottom:0; width:18px; height:9px; border-radius:50%; border:1px solid #B79550; }
+  .ns-station .ns-ping { animation:nsPing 3.6s cubic-bezier(.2,.7,.25,1) infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    .ns-mark,.ns-sheen,.ns-estd,.ns-hrule,.ns-scroll { animation:none !important; opacity:1 !important; transform:none !important; filter:none !important; }
+    [data-reveal] { opacity:1 !important; transform:none !important; transition:none !important; }
+  }
+  @media (max-width: 1000px) { .ns-station { grid-column:span 6 !important; align-self:start !important; } }
+  @media (max-width: 640px) { .ns-station { grid-column:span 12 !important; } }
+</style>
+</helmet>
+
+<div style="position:relative; overflow-x:clip; background:#F5F4E1">
+
+  <div style="position:relative">
+  <div id="ns-topo" aria-hidden="true" style="position:absolute; inset:0; overflow:hidden; pointer-events:none"></div>
+
+  <section onClick="{{ skipIntro }}" style="position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:clamp(64px,8vh,104px) clamp(20px,6vw,56px) clamp(72px,9vh,104px); overflow:hidden">
+
+    <x-import component-from-global-scope="arkansas-intro" from="./arkansas-intro.js" hint-size="100%,100%"></x-import>
+
+    <div style="position:relative; display:flex; flex-direction:column; align-items:center; gap:min(clamp(14px,2.4vh,26px), 3svh)">
+      <div class="ns-mark" style="position:relative; width:min(clamp(240px,34vw,470px), 40svh); line-height:0">
+        <img src="assets/logo-primary-light.png" alt="Natural State Medicinals" style="width:100%; height:auto; display:block; filter:drop-shadow(0 3px 5px rgba(32,37,58,.22)) drop-shadow(0 30px 52px rgba(32,37,58,.34))">
+        <div class="ns-sheen" aria-hidden="true" style="position:absolute; inset:0; pointer-events:none; -webkit-mask-image:url(assets/logo-primary-light.png); mask-image:url(assets/logo-primary-light.png); -webkit-mask-size:100% 100%; mask-size:100% 100%; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat; background-image:radial-gradient(115% 95% at 50% -25%, rgba(255,252,240,.75) 0%, rgba(212,184,120,.34) 34%, rgba(212,184,120,0) 66%); mix-blend-mode:screen"></div>
+      </div>
+
+      <div class="ns-estd" style="font-family:var(--font-label); font-size:min(11px,2.1svh); font-weight:600; letter-spacing:.34em; text-transform:uppercase; color:var(--ns-bronze)">Cultivated in Arkansas</div>
+    </div>
+
+  </section>
+
+  <section id="doors" style="position:relative; padding:clamp(52px,6vw,92px) clamp(20px,6vw,56px) clamp(72px,8vw,116px)">
+    <div style="max-width:1320px; margin:0 auto">
+      <div data-reveal="" style="display:flex; align-items:baseline; gap:18px; flex-wrap:wrap; margin-bottom:clamp(28px,4vw,56px)">
+        <span style="font-family:var(--font-label); font-size:11px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--ns-bronze)">Where would you like to start</span>
+        <span style="flex:1; min-width:60px; height:1px; background:var(--hair)"></span>
+
+      </div>
+
+      <div class="ns-stage" style="position:relative; display:grid; grid-template-columns:repeat(12,1fr); grid-auto-rows:minmax(0,auto); row-gap:clamp(34px,5vw,74px); column-gap:clamp(16px,2vw,32px)">
+
+        <a class="ns-station" data-reveal="" href="About Us.dc.html" style="grid-column:1 / span 4; display:block">
+          <span style="display:flex; align-items:flex-end; height:34px">
+            <span class="ns-pinwrap">
+              <span class="ns-ping"></span>
+              <span class="ns-pinshadow"></span>
+              <span class="ns-pin"></span>
+            </span>
+            <span class="ns-lead" style="width:38px; height:1px; background:#B79550; opacity:.55; margin-bottom:3px"></span>
+          </span>
+          <div style="margin-top:14px; display:flex; align-items:baseline; gap:12px">
+            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze)">01</span>
+            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(25px,2.85vw,39px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">About us</span>
+          </div>
+          <p style="margin:12px 0 0; max-width:32ch; font-size:15px; line-height:1.62; color:var(--text-muted)">Who grows it, where it is grown, and why we do it the slow way.</p>
+        </a>
+
+        <a class="ns-station" data-reveal="" href="https://mdedman-tech.github.io/Natural-State-Education-Guide/" target="_blank" rel="noopener" style="grid-column:6 / span 4; align-self:end; display:block">
+          <span style="display:flex; align-items:flex-end; height:34px">
+            <span class="ns-pinwrap">
+              <span class="ns-ping"></span>
+              <span class="ns-pinshadow"></span>
+              <span class="ns-pin"></span>
+            </span>
+            <span class="ns-lead" style="width:38px; height:1px; background:#B79550; opacity:.55; margin-bottom:3px"></span>
+          </span>
+          <div style="margin-top:14px; display:flex; align-items:baseline; gap:12px">
+            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze)">02</span>
+            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(25px,2.85vw,39px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">Education</span>
+          </div>
+          <p style="margin:12px 0 0; max-width:32ch; font-size:15px; line-height:1.62; color:var(--text-muted)">A patient’s guide to the plant, the practice, and the products.</p>
+        </a>
+
+        <a class="ns-station" data-reveal="" href="https://www.naturalstatemeds.com/find-our-products" target="_blank" rel="noopener" style="grid-column:10 / span 3; display:block">
+          <span style="display:flex; align-items:flex-end; height:34px">
+            <span class="ns-pinwrap">
+              <span class="ns-ping"></span>
+              <span class="ns-pinshadow"></span>
+              <span class="ns-pin"></span>
+            </span>
+            <span class="ns-lead" style="width:38px; height:1px; background:#B79550; opacity:.55; margin-bottom:3px"></span>
+          </span>
+          <div style="margin-top:14px; display:flex; align-items:baseline; gap:12px">
+            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze)">03</span>
+            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(25px,2.85vw,39px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">Find our product</span>
+          </div>
+          <p style="margin:12px 0 0; max-width:30ch; font-size:15px; line-height:1.62; color:var(--text-muted)">Arkansas dispensaries carrying Natural State right now.</p>
+        </a>
+
+        <a class="ns-station" data-reveal="" href="#doors" style="grid-column:3 / span 4; display:block">
+          <span style="display:flex; align-items:flex-end; height:34px">
+            <span class="ns-pinwrap">
+              <span class="ns-ping"></span>
+              <span class="ns-pinshadow"></span>
+              <span class="ns-pin"></span>
+            </span>
+            <span class="ns-lead" style="width:38px; height:1px; background:#B79550; opacity:.55; margin-bottom:3px"></span>
+          </span>
+          <div style="margin-top:14px; display:flex; align-items:baseline; gap:12px">
+            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze)">04</span>
+            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(25px,2.85vw,39px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">Check your allotment</span>
+          </div>
+          <p style="margin:12px 0 0; max-width:32ch; font-size:15px; line-height:1.62; color:var(--text-muted)">Two and a half ounces every fourteen days. See where you stand.</p>
+        </a>
+
+        <a class="ns-station" data-reveal="" href="How to Get a Card.dc.html" style="grid-column:8 / span 4; align-self:end; display:block">
+          <span style="display:flex; align-items:flex-end; height:34px">
+            <span class="ns-pinwrap">
+              <span class="ns-ping"></span>
+              <span class="ns-pinshadow"></span>
+              <span class="ns-pin"></span>
+            </span>
+            <span class="ns-lead" style="width:38px; height:1px; background:#B79550; opacity:.55; margin-bottom:3px"></span>
+          </span>
+          <div style="margin-top:14px; display:flex; align-items:baseline; gap:12px">
+            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze)">05</span>
+            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(25px,2.85vw,39px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">How to get a card</span>
+          </div>
+          <p style="margin:12px 0 0; max-width:32ch; font-size:15px; line-height:1.62; color:var(--text-muted)">What the state asks for, what it costs, and how long it takes.</p>
+        </a>
+
+        <a class="ns-station" data-reveal="" href="#doors" style="grid-column:4 / span 4; display:block">
+          <span style="display:flex; align-items:flex-end; height:34px">
+            <span class="ns-pinwrap">
+              <span class="ns-ping"></span>
+              <span class="ns-pinshadow"></span>
+              <span class="ns-pin"></span>
+            </span>
+            <span class="ns-lead" style="width:38px; height:1px; background:#B79550; opacity:.55; margin-bottom:3px"></span>
+          </span>
+          <div style="margin-top:14px; display:flex; align-items:baseline; gap:12px">
+            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze)">06</span>
+            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(25px,2.85vw,39px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">Contact us</span>
+          </div>
+          <p style="margin:12px 0 0; max-width:32ch; font-size:15px; line-height:1.62; color:var(--text-muted)">Questions, feedback, or a problem with a package.</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <footer style="background:#20253A; padding:22px clamp(20px,6vw,56px) 24px">
+    <div style="max-width:1440px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:14px 32px; flex-wrap:wrap">
+      <span style="display:flex; align-items:center; gap:12px">
+        <img src="assets/brand/nav-mark-fanleaf-gold.png" alt="" style="width:24px; height:22px; object-fit:contain">
+        <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:rgba(245,244,225,.72)">Natural State Medicinals</span>
+      </span>
+      <span style="flex:1 1 480px; font-size:11.5px; line-height:1.5; color:rgba(245,244,225,.5); max-width:96ch">{{ compliance }}</span>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;federalPosture&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Compliance&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    this._light();
+    const targets = document.querySelectorAll('[data-reveal]');
+    if (targets.length) {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-in'); this._io.unobserve(en.target); } });
+      }, { rootMargin: '0px 0px -10% 0px' });
+      targets.forEach(t => this._io.observe(t));
+    }
+  }
+  // A single fixed light source sits just above the viewport. Scrolling moves
+  // the mark past it, so the highlight and the cast shadow rake across.
+  _light() {
+    const mark = document.querySelector('.ns-mark');
+    const sheen = document.querySelector('.ns-sheen');
+    const img = mark && mark.querySelector('img');
+    if (!mark || !sheen || !img) return;
+    mark.classList.add('ns-lit');
+    let raf = 0;
+    const apply = () => {
+      raf = 0;
+      const r = mark.getBoundingClientRect();
+      if (!r.width) return;
+      const lx = window.innerWidth * 0.5;
+      const ly = -window.innerHeight * 0.22;
+      const px = ((lx - r.left) / r.width) * 100;
+      const py = ((ly - r.top) / r.height) * 100;
+      sheen.style.backgroundImage =
+        'radial-gradient(125% 105% at ' + px.toFixed(1) + '% ' + py.toFixed(1) + '%, ' +
+        'rgba(255,252,240,.78) 0%, rgba(212,184,120,.34) 34%, rgba(212,184,120,0) 66%)';
+      const dx = (r.left + r.width / 2 - lx) / window.innerWidth;
+      const dy = (r.top + r.height / 2 - ly) / window.innerHeight;
+      const ox = Math.max(-26, Math.min(26, dx * 46));
+      const oy = Math.max(6, Math.min(44, dy * 34));
+      img.style.filter =
+        'drop-shadow(' + (ox * 0.18).toFixed(1) + 'px ' + (oy * 0.12 + 2).toFixed(1) + 'px 5px rgba(32,37,58,.22)) ' +
+        'drop-shadow(' + ox.toFixed(1) + 'px ' + oy.toFixed(1) + 'px 52px rgba(32,37,58,.34))';
+    };
+    this._onScroll = () => { if (!raf) raf = requestAnimationFrame(apply); };
+    addEventListener('scroll', this._onScroll, { passive: true });
+    addEventListener('resize', this._onScroll);
+    apply();
+  }
+
+  componentWillUnmount() {
+    if (this._io) this._io.disconnect();
+    if (this._onScroll) { removeEventListener('scroll', this._onScroll); removeEventListener('resize', this._onScroll); }
+  }
+
+  renderVals() {
+    const federal = !!this.props.federalPosture;
+    return {
+      compliance: federal
+        ? 'For adults 21 and over. Keep out of reach of children. This product is not approved by the FDA to treat, cure, or prevent any disease. Marijuana use during pregnancy or breastfeeding poses potential harms. This site is education, not medical advice.'
+        : 'For use by qualifying patients only. Keep out of reach of children. This product is not approved by the FDA to treat, cure, or prevent any disease. Marijuana use during pregnancy or breastfeeding poses potential harms. This site is education, not medical advice.',
+      doors: [
+        { num: '01', title: 'About us', cta: 'Meet the growers',
+          desc: 'Who grows it, where it is grown, and why we do it the slow way.' },
+        { num: '02', title: 'Education', cta: 'Open the guide',
+          desc: 'A patient\u2019s guide to the plant, the practice, and the products.' },
+        { num: '03', title: 'Find our product', cta: 'See dispensaries',
+          desc: 'Arkansas dispensaries carrying Natural State flower, vapes and gummies.' },
+        { num: '04', title: 'Check your allotment', cta: 'Check now',
+          desc: 'Two and a half ounces every fourteen days. See where you stand.' },
+        { num: '05', title: 'Contact us', cta: 'Get in touch',
+          desc: 'Questions, feedback, or a problem with a package. A person answers.' }
+      ],
+      skipIntro: (e) => {
+        if (e && e.target && e.target.closest && e.target.closest('a')) return;
+        if (document.documentElement.classList.contains('ns-skip')) return;
+        document.documentElement.classList.add('ns-skip');
+        const intro = document.querySelector('arkansas-intro');
+        if (intro && intro.finish) intro.finish();
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

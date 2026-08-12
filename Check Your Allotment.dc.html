@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<link rel="stylesheet" href="_ds/natural-state-design-system-019df9aa-a367-7899-b1ed-f3a99f259508/colors_and_type.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap">
+<script src="_ds/natural-state-design-system-019df9aa-a367-7899-b1ed-f3a99f259508/_ds_bundle.js"></script>
+<script src="./ar-elevation.js"></script>
+<script src="./topo-texture.js"></script>
+<style>
+  :root { color-scheme: light only;
+    --ns-arctic:#F5F4E1; --ns-midnight:#20253A; --ns-bronze:#B79550; --ns-cream:#F6E7D7;
+    --ns-bronze-ink:#7A5F28; --ns-bronze-light:#cdb074;
+    --text-strong:#20253A; --text-body:rgba(32,37,58,0.88); --text-muted:rgba(32,37,58,0.78); --text-faint:rgba(32,37,58,0.74);
+    --hair:rgba(32,37,58,0.12);
+    --font-display:'Burford','Playfair Display',Georgia,serif;
+    --font-sans:'Work Sans',system-ui,-apple-system,sans-serif;
+    --font-label:'Caligor Sans','Work Sans',sans-serif;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body { margin:0; background:#F5F4E1; color:#20253A; font-family:var(--font-sans); -webkit-font-smoothing:antialiased; }
+  p { line-height:1.72; text-wrap:pretty; }
+  a { color:#7A5F28; text-decoration:none; }
+  a:hover { color:#20253A; }
+  ::selection { background:rgba(183,149,80,.28); color:#20253A; }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline:2px solid #B79550; outline-offset:3px; }
+
+  .ns-navpin { position:relative; width:13px; height:18px; flex:none; }
+  .ns-navpin::before { content:""; position:absolute; left:0; top:0; width:13px; height:13px; background:#B79550; border-radius:50% 50% 50% 0; transform:rotate(-45deg); }
+  .ns-navpin::after { content:""; position:absolute; left:4.5px; top:4.5px; width:4px; height:4px; border-radius:50%; background:#F5F4E1; }
+
+  @keyframes nsRise { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+  @keyframes nsGrow { from { transform:scaleY(0); } to { transform:scaleY(1); } }
+  .ns-in { animation:nsRise .9s cubic-bezier(.2,.7,.25,1) both; }
+  [data-reveal] { opacity:0; transform:translateY(16px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.25,1); }
+  [data-reveal].is-in { opacity:1; transform:none; }
+
+  .ns-day-fill { transform-origin:bottom; animation:nsGrow .55s cubic-bezier(.2,.7,.25,1) both; }
+  .ns-day:hover .ns-day-cap { opacity:1; }
+  .ns-day-cap { opacity:0; transition:opacity .2s ease; }
+
+  .ns-inline { font-family:var(--font-sans); font-size:inherit; font-weight:500; color:#20253A; background:transparent;
+    border:none; border-bottom:2px solid rgba(183,149,80,.55); padding:0 4px 3px; text-align:center; }
+  .ns-inline:focus { outline:none; border-bottom-color:#B79550; background:rgba(183,149,80,.1); }
+  select.ns-inline { appearance:none; -webkit-appearance:none; cursor:pointer; padding-right:18px;
+    background-image:linear-gradient(45deg,transparent 50%,#7A5F28 50%),linear-gradient(135deg,#7A5F28 50%,transparent 50%);
+    background-position:calc(100% - 9px) calc(50% + 1px), calc(100% - 4px) calc(50% + 1px);
+    background-size:5px 5px,5px 5px; background-repeat:no-repeat; }
+
+  .ns-x { background:none; border:none; cursor:pointer; color:rgba(32,37,58,.45); font-size:13px; padding:4px; }
+  .ns-x:hover { color:#20253A; }
+
+  @media (max-width: 980px) { .ns-split { grid-template-columns:1fr !important; } }
+  @media (max-width: 640px) { .ns-daylabels { display:none !important; } .ns-sentence { font-size:18px !important; line-height:2.4 !important; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto; }
+    .ns-in, .ns-day-fill { animation:none !important; }
+    [data-reveal] { opacity:1 !important; transform:none !important; transition:none !important; }
+  }
+</style>
+</helmet>
+
+<div style="position:relative; overflow-x:clip; background:#F5F4E1">
+
+  <header style="position:sticky; top:0; z-index:60; background:rgba(245,244,225,.92); backdrop-filter:blur(12px) saturate(1.05); -webkit-backdrop-filter:blur(12px) saturate(1.05); border-bottom:1px solid var(--hair)">
+    <div style="max-width:1240px; margin:0 auto; padding:0 clamp(20px,5vw,48px); height:62px; display:flex; align-items:center; justify-content:space-between; gap:20px">
+      <a href="Natural State Medicinals.dc.html#doors" style="display:flex; align-items:center; gap:11px">
+        <span class="ns-navpin" aria-hidden="true"></span>
+        <img src="assets/brand/nav-mark-fanleaf-gold.png" alt="" style="width:23px; height:21px; object-fit:contain">
+        <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#20253A">Natural State Medicinals</span>
+      </a>
+      <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--ns-bronze-ink)">Check your allotment</span>
+    </div>
+  </header>
+
+  <section style="position:relative; background:#20253A; padding:clamp(42px,6vw,80px) clamp(20px,5vw,48px) clamp(34px,4.5vw,58px); overflow:hidden">
+    <topo-texture ink="245,244,225" opacity="0.05"></topo-texture>
+    <div style="position:relative; max-width:1240px; margin:0 auto">
+      <div class="ns-in" style="display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap">
+        <span style="font-family:var(--font-label); font-size:11px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--ns-bronze-light)">Your last fourteen days</span>
+        <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:rgba(245,244,225,.55)">{{ windowLabel }}</span>
+      </div>
+
+      <div class="ns-in" style="animation-delay:.08s; margin-top:clamp(22px,3vw,36px); display:flex; align-items:flex-end; gap:clamp(20px,4vw,60px); flex-wrap:wrap">
+        <div>
+          <div style="display:flex; align-items:flex-end; gap:14px">
+            <span style="font-family:var(--font-display); font-weight:400; font-size:clamp(70px,10vw,142px); line-height:.82; letter-spacing:-.01em; color:var(--ns-arctic)">{{ leftGrams }}</span>
+            <span style="font-family:var(--font-label); font-size:12.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; line-height:1.5; color:var(--ns-bronze-light); padding-bottom:14px">grams<br>still yours</span>
+          </div>
+          <p style="margin:14px 0 0; max-width:42ch; font-size:16.5px; line-height:1.6; color:rgba(245,244,225,.82)">{{ leftPlain }}</p>
+        </div>
+        <p style="flex:1 1 300px; min-width:250px; margin:0 0 6px; font-size:15.5px; line-height:1.66; color:rgba(245,244,225,.72)">{{ nextLine }}</p>
+      </div>
+
+      <div class="ns-in" style="animation-delay:.16s; margin-top:clamp(28px,4vw,48px)">
+        <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="height:clamp(112px,14vw,176px); display:grid; place-items:center; border-bottom:1px solid rgba(245,244,225,.28)">
+            <span style="font-family:var(--font-label); font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:rgba(245,244,225,.62)">No pickups written down yet</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{ hasEntries }}" hint-placeholder-val="{{ true }}">
+        <div style="height:clamp(112px,14vw,176px); display:grid; grid-template-columns:repeat(14,1fr); gap:clamp(3px,.5vw,7px); align-items:end; border-bottom:1px solid rgba(245,244,225,.28)">
+          <sc-for list="{{ days }}" as="d" hint-placeholder-count="14">
+            <div class="ns-day" title="{{ d.title }}" style="display:flex; flex-direction:column; justify-content:flex-end; height:100%">
+              <span class="ns-day-cap" style="display:block; text-align:center; font-family:var(--font-label); font-size:9.5px; font-weight:600; color:var(--ns-bronze-light); margin-bottom:5px; white-space:nowrap">{{ d.capLabel }}</span>
+              <span class="ns-day-fill" style="display:block; width:100%; height:{{ d.pct }}%; min-height:{{ d.minH }}px; background:{{ d.fill }}; animation-delay:{{ d.delay }}"></span>
+            </div>
+          </sc-for>
+        </div>
+        <div class="ns-daylabels" style="margin-top:9px; display:grid; grid-template-columns:repeat(14,1fr); gap:clamp(3px,.5vw,7px)">
+          <sc-for list="{{ days }}" as="d" hint-placeholder-count="14">
+            <span style="text-align:center; font-family:var(--font-label); font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:{{ d.labelColor }}">{{ d.dayLabel }}</span>
+          </sc-for>
+        </div>
+        </sc-if>
+        <div style="margin-top:15px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
+          <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:rgba(245,244,225,.62)">Oldest day on the left. It falls off tonight.</span>
+          <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:rgba(245,244,225,.62)">{{ usedLabel }} of 70.875 g used</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="position:relative; background:#F6E7D7; padding:clamp(32px,4.5vw,58px) clamp(20px,5vw,48px); overflow:hidden">
+    <topo-texture opacity="0.045"></topo-texture>
+    <div style="position:relative; max-width:1240px; margin:0 auto">
+      <span style="font-family:var(--font-label); font-size:11px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--ns-bronze-ink)">Write one down</span>
+      <div class="ns-sentence" style="margin-top:16px; font-size:clamp(19px,2vw,25px); line-height:2.2; color:var(--text-body)">On
+        <input class="ns-inline" type="date" value="{{ formDate }}" max="{{ today }}" onChange="{{ onDate }}" aria-label="Date of pickup" style="width:clamp(146px,15vw,182px)">
+        I picked up
+        <input class="ns-inline" type="number" step="0.001" min="0" value="{{ formAmount }}" onInput="{{ onAmount }}" placeholder="3.5" aria-label="Amount" style="width:84px">
+        <select class="ns-inline" value="{{ formUnit }}" onChange="{{ onUnit }}" aria-label="Unit">
+          <option value="eighth">eighths</option>
+          <option value="quarter">quarters</option>
+          <option value="half">half ounces</option>
+          <option value="oz">ounces</option>
+          <option value="g">grams</option>
+        </select>
+        <button type="button" onClick="{{ addEntry }}" style="margin-left:6px; min-height:44px; padding:0 22px; background:#20253A; border:none; border-radius:4px; color:#F5F4E1; font-family:var(--font-sans); font-size:14px; font-weight:600; letter-spacing:.04em; cursor:pointer; vertical-align:middle" style-hover="background:#B79550; color:#20253A">Add it</button>
+      </div>
+      <p style="margin:10px 0 0; font-size:14.5px; color:var(--text-muted)">{{ addHint }}</p>
+    </div>
+  </section>
+
+  <section style="padding:clamp(38px,5vw,72px) clamp(20px,5vw,48px) clamp(48px,6vw,88px)">
+    <div class="ns-split" style="max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(28px,5vw,72px); align-items:start">
+
+      <div data-reveal="">
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; border-bottom:1px solid #B79550; padding-bottom:12px">
+          <h2 style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(24px,2.8vw,34px); line-height:1">What you have picked up</h2>
+          <contour-rule style="flex:1; min-width:60px"></contour-rule>
+          <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--text-faint)">{{ countLabel }}</span>
+        </div>
+
+        <sc-if value="{{ hasEntries }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <sc-for list="{{ entries }}" as="e" hint-placeholder-count="3">
+              <div style="display:grid; grid-template-columns:auto 1fr auto auto; gap:0 14px; align-items:baseline; padding:14px 0; border-bottom:1px dashed rgba(32,37,58,.22)">
+                <span style="font-size:16.5px; font-weight:500; color:var(--text-strong)">{{ e.dateLabel }}</span>
+                <span style="border-bottom:1px dotted rgba(32,37,58,.3); transform:translateY(-4px)"></span>
+                <span style="font-family:var(--font-display); font-size:21px; line-height:1; color:var(--text-strong)">{{ e.grams }}</span>
+                <button class="ns-x" type="button" onClick="{{ e.onRemove }}" aria-label="{{ e.removeLabel }}">✕</button>
+                <span style="grid-column:1 / 3; margin-top:3px; font-size:13.5px; color:var(--text-faint)">{{ e.note }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+          <p style="margin:18px 0 0; max-width:56ch; font-size:16px; color:var(--text-muted)">Nothing written down yet. Put in your last two weeks of pickups and the bars above will fill in.</p>
+        </sc-if>
+      </div>
+
+      <div data-reveal="">
+        <span style="font-family:var(--font-label); font-size:11px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--ns-bronze-ink)">Weights, in plain grams</span>
+        <div style="margin-top:14px">
+          <sc-for list="{{ conversions }}" as="c" hint-placeholder-count="5">
+            <div style="display:flex; justify-content:space-between; gap:16px; padding:11px 0; border-bottom:1px solid var(--hair)">
+              <span style="font-size:15.5px; color:var(--text-body)">{{ c.name }}</span>
+              <span style="font-family:var(--font-display); font-size:18px; color:var(--text-strong)">{{ c.grams }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="margin-top:clamp(26px,3vw,38px); border-top:1px solid #B79550; padding-top:18px">
+          <span style="font-family:var(--font-label); font-size:11px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--ns-bronze-ink)">Watch out</span>
+          <p style="margin:12px 0 0; font-size:15.5px; color:var(--text-body)">The fourteen days roll. They do not reset on the first of the month. Each pickup falls off exactly fourteen days after the day you made it, and that is the day the room comes back.</p>
+        </div>
+
+        <div style="margin-top:clamp(26px,3vw,38px); border-top:1px solid var(--hair); padding-top:18px">
+          <span style="font-family:var(--font-label); font-size:11px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--ns-bronze-ink)">The number that counts</span>
+          <p style="margin:12px 0 0; font-size:15.5px; color:var(--text-body)">The state keeps the real meter and the dispensary reads it at the register. If ours and theirs disagree, theirs wins. Yours lives under Limit Meter in the patient portal.</p>
+          <a href="https://mmj.adh.arkansas.gov/?action=own_applications" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; min-height:46px; margin-top:16px; padding:0 22px; border:1px solid #20253A; border-radius:4px; color:#20253A; font-size:14px; font-weight:600; letter-spacing:.04em" style-hover="background:#20253A; color:#F5F4E1">Open the state limit meter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 clamp(20px,5vw,48px) clamp(52px,7vw,96px)">
+    <div style="max-width:1240px; margin:0 auto; border-top:1px solid var(--hair); padding-top:clamp(26px,4vw,44px); display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap">
+      <a href="Natural State Medicinals.dc.html#doors" style="font-family:var(--font-display); font-weight:400; font-size:clamp(22px,2.4vw,32px); line-height:1; color:var(--text-strong)" style-hover="color:#7A5F28">← Back to the front</a>
+      <a href="How to Get a Card.dc.html" style="font-family:var(--font-label); font-size:11px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--ns-bronze-ink)">No card yet? Start here →</a>
+    </div>
+  </section>
+
+  <footer style="background:#20253A; padding:22px clamp(20px,5vw,48px) 24px">
+    <div style="max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:14px 32px; flex-wrap:wrap">
+      <span style="display:flex; align-items:center; gap:12px">
+        <img src="assets/brand/nav-mark-fanleaf-gold.png" alt="" style="width:24px; height:22px; object-fit:contain">
+        <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:rgba(245,244,225,.72)">Natural State Medicinals</span>
+      </span>
+      <span style="flex:1 1 480px; font-size:11.5px; line-height:1.5; color:rgba(245,244,225,.5); max-width:96ch">{{ compliance }}</span>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;federalPosture&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Compliance&quot;}}">
+const KEY = 'nsm-allotment-v1';
+const CAP = 70.875;
+const WIN = 14;
+const UNITS = { g: 1, eighth: 3.5, quarter: 7, half: 14.175, oz: 28.35 };
+
+const iso = (d) => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+const parseISO = (s) => { const p = String(s || '').split('-').map(Number); return new Date(p[0], (p[1] || 1) - 1, p[2] || 1); };
+const fmt = (d) => d.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+const r3 = (n) => Math.round(n * 1000) / 1000;
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    let entries = [];
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) entries = JSON.parse(raw).filter(e => e && e.date && typeof e.grams === 'number');
+    } catch (e) {}
+    this.state = { entries, date: iso(new Date()), amount: '', unit: 'eighth', hint: 'Nothing is saved anywhere but this browser.' };
+  }
+
+  // The meter settles once on first view, the way a real gauge does.
+  _display(target) {
+    if (this._settled || matchMedia('(prefers-reduced-motion: reduce)').matches) return target;
+    if (this._animTarget !== target) {
+      this._animTarget = target;
+      const t0 = performance.now(), dur = 900;
+      const tick = (now) => {
+        const p = Math.min(1, (now - t0) / dur);
+        const e = 1 - Math.pow(1 - p, 3);
+        this._animValue = Math.round(target * e * 1000) / 1000;
+        if (p < 1) { this._raf = requestAnimationFrame(tick); }
+        else { this._settled = true; this._animValue = target; }
+        this.forceUpdate();
+      };
+      this._raf = requestAnimationFrame(tick);
+      this._animValue = 0;
+    }
+    return this._animValue;
+  }
+
+  componentDidMount() {
+    const t = document.querySelectorAll('[data-reveal]');
+    if (!t.length) return;
+    this._io = new IntersectionObserver((ents) => {
+      ents.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-in'); this._io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    t.forEach(x => this._io.observe(x));
+  }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); if (this._raf) cancelAnimationFrame(this._raf); }
+
+  save(entries) {
+    try { localStorage.setItem(KEY, JSON.stringify(entries)); } catch (e) {}
+    this.setState({ entries });
+  }
+
+  renderVals() {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const cutoff = new Date(today.getTime()); cutoff.setDate(cutoff.getDate() - (WIN - 1));
+
+    const live = this.state.entries.filter(e => parseISO(e.date) >= cutoff).sort((a, b) => (a.date < b.date ? 1 : -1));
+    const used = live.reduce((s, e) => s + e.grams, 0);
+    const left = Math.max(0, r3(CAP - used));
+
+    // one column per day in the window, oldest first
+    const byDay = {};
+    live.forEach(e => { byDay[e.date] = (byDay[e.date] || 0) + e.grams; });
+    const peak = Math.max(CAP / 3, ...Object.values(byDay).concat([0]));
+    const days = [];
+    for (let i = 0; i < WIN; i++) {
+      const d = new Date(cutoff.getTime()); d.setDate(d.getDate() + i);
+      const key = iso(d);
+      const g = byDay[key] || 0;
+      const isToday = key === iso(today);
+      days.push({
+        pct: g > 0 ? Math.max(6, (g / peak) * 100) : 0,
+        minH: g > 0 ? 4 : 2,
+        fill: g > 0 ? (i === 0 ? '#cdb074' : '#B79550') : 'rgba(245,244,225,.14)',
+        dayLabel: d.toLocaleDateString('en-US', { weekday: 'narrow' }) + ' ' + d.getDate(),
+        labelColor: isToday ? '#dcc596' : 'rgba(245,244,225,.66)',
+        capLabel: g > 0 ? r3(g) + ' g' : '',
+        title: fmt(d) + (g > 0 ? ': ' + r3(g) + ' grams' : ': nothing'),
+        delay: (i * 45) + 'ms'
+      });
+    }
+
+    const oldest = live.length ? live[live.length - 1] : null;
+    let nextLine = 'Nothing is counting against you right now. The whole two and a half ounces is sitting there.';
+    if (oldest && used > 0) {
+      const back = parseISO(oldest.date); back.setDate(back.getDate() + WIN);
+      const dd = Math.max(0, Math.ceil((back - now) / 86400000));
+      const when = dd === 0 ? 'today' : dd === 1 ? 'tomorrow' : 'on ' + fmt(back);
+      nextLine = left <= 0
+        ? 'You are at the cap. ' + r3(oldest.grams) + ' grams frees up ' + when + '.'
+        : r3(oldest.grams) + ' grams comes back ' + when + ', from the pickup on ' + fmt(parseISO(oldest.date)) + '.';
+    }
+
+    const eighths = left / 3.5;
+    const oz = left / 28.35;
+    const ozPart = oz >= 1
+      ? (Math.round(oz * 100) / 100) + (Math.round(oz * 100) / 100 === 1 ? ' ounce' : ' ounces')
+      : (Math.round(oz * 100) / 100) + ' of an ounce';
+    const leftPlain = left <= 0 ? 'Nothing left in this window.'
+      : 'About ' + (eighths >= 1 ? (Math.round(eighths * 10) / 10) + ' eighths' : r3(left) + ' grams')
+        + ', or ' + ozPart + '.';
+
+    const entries = live.map((e) => {
+      const d = parseISO(e.date);
+      const off = new Date(d.getTime()); off.setDate(off.getDate() + WIN);
+      return {
+        dateLabel: d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
+        note: 'Falls off ' + fmt(off),
+        grams: r3(e.grams) + ' g',
+        removeLabel: 'Remove the ' + r3(e.grams) + ' gram pickup on ' + fmt(d),
+        onRemove: () => {
+          const i = this.state.entries.findIndex(x => x.date === e.date && x.grams === e.grams);
+          if (i < 0) return;
+          const next = this.state.entries.slice(); next.splice(i, 1); this.save(next);
+        }
+      };
+    });
+
+    const rolled = this.state.entries.length - live.length;
+
+    return {
+      leftGrams: this._display(r3(left)), leftPlain, nextLine, days, entries,
+      windowLabel: fmt(cutoff) + ' to ' + fmt(today),
+      usedLabel: r3(used) + ' g',
+      hasEntries: live.length > 0,
+      isEmpty: live.length === 0,
+      countLabel: live.length === 0 ? 'Nothing in the window'
+        : live.length + (live.length === 1 ? ' pickup' : ' pickups') + (rolled > 0 ? ', ' + rolled + ' rolled off' : ''),
+      today: iso(today),
+      formDate: this.state.date,
+      formAmount: this.state.amount,
+      formUnit: this.state.unit,
+      addHint: this.state.hint,
+      onDate: (ev) => this.setState({ date: ev.target.value }),
+      onAmount: (ev) => this.setState({ amount: ev.target.value }),
+      onUnit: (ev) => this.setState({ unit: ev.target.value }),
+      addEntry: () => {
+        const amt = parseFloat(this.state.amount);
+        if (!this.state.date || !(amt > 0)) { this.setState({ hint: 'Put in a date and an amount first.' }); return; }
+        const grams = r3(amt * (UNITS[this.state.unit] || 1));
+        const next = this.state.entries.concat([{ date: this.state.date, grams }]);
+        try { localStorage.setItem(KEY, JSON.stringify(next)); } catch (e) {}
+        this.setState({ entries: next, amount: '', hint: grams + ' grams written down.' });
+      },
+      conversions: [
+        { name: 'An eighth', grams: '3.5 g' },
+        { name: 'A quarter', grams: '7 g' },
+        { name: 'A half ounce', grams: '14.175 g' },
+        { name: 'An ounce', grams: '28.35 g' },
+        { name: 'Two and a half ounces', grams: '70.875 g' }
+      ],
+      compliance: this.props.federalPosture
+        ? 'For adults 21 and over. Keep out of reach of children. This tool is an estimate kept on your own device. It is not a state record.'
+        : 'For use by qualifying patients only. Keep out of reach of children. This product is not approved by the FDA to treat, cure, or prevent any disease. Marijuana use during pregnancy or breastfeeding poses potential harms. This tool is an estimate kept on your own device, not an official state record.'
+    };
+  }
+}
+
+</script>
+</body>
+</html>
