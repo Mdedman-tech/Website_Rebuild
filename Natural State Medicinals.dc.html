@@ -53,6 +53,33 @@
     animation:none !important; opacity:1 !important; transform:none !important; filter:none !important;
   }
 
+  /* pocket transit, bottom right of the hero */
+  .ns-compass-wrap { opacity:0; transition:opacity 500ms ease; }
+  .ns-compass-wrap.is-active { opacity:1; }
+  .ns-compass-cap, .ns-compass-sub { opacity:0; transition:opacity 500ms ease; }
+  .ns-compass-wrap.caption-in .ns-compass-cap { opacity:.9; }
+  .ns-compass-wrap.caption-in .ns-compass-sub { opacity:.55; }
+  .ns-compass-wrap.is-past { opacity:0 !important; }
+  /* both layers share the 1200x1500 canvas; boss/pivot sits at (600,674) */
+  .ns-compass { position:relative; width:150px; aspect-ratio:1200/1500; filter:drop-shadow(0 5px 12px rgba(32,37,58,.24)); }
+  .ns-compass img { position:absolute; inset:0; width:100%; height:auto; }
+  .ns-needle { transform-origin:50% 44.9%; transform:translate(-0.25%,0.2%) rotate(0deg); }
+  .ns-compass-wrap.sweep .ns-needle { animation:nsSweepSouth 1500ms cubic-bezier(.22,1,.36,1) 200ms forwards; }
+  @keyframes nsSweepSouth {
+    0% { transform:translate(-0.25%,0.2%) rotate(0deg); }
+    82% { transform:translate(-0.25%,0.2%) rotate(184deg); }
+    100% { transform:translate(-0.25%,0.2%) rotate(180deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ns-compass-wrap, .ns-compass-cap, .ns-compass-sub { transition:none; }
+    .ns-compass-wrap.sweep .ns-needle { animation:none; transform:translate(-0.25%,0.2%) rotate(180deg); }
+  }
+  @media (max-width:600px) {
+    .ns-compass-wrap { right:16px !important; bottom:16px !important; }
+    .ns-compass { width:112px !important; }
+    .ns-compass-cap { font-size:9px !important; letter-spacing:.2em !important; }
+  }
+
   [data-reveal] { opacity:0; transform:translateY(18px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.25,1); }
   [data-reveal].is-in { opacity:1; transform:none; }
 
@@ -116,6 +143,15 @@
     </div>
 
   </section>
+
+  <div class="ns-compass-wrap" id="ns-compass" aria-hidden="true" style="position:fixed; right:24px; bottom:24px; z-index:40; display:flex; flex-direction:column; align-items:center; gap:10px; pointer-events:none">
+    <div class="ns-compass-cap" style="font-family:var(--font-label); font-size:10px; font-weight:600; letter-spacing:.25em; text-transform:uppercase; color:#20253A">Find your natural state</div>
+    <div class="ns-compass">
+      <img src="assets/compass/Compass_Body.png" alt="">
+      <img class="ns-needle" src="assets/compass/Compass_Needle.png" alt="">
+    </div>
+    <div class="ns-compass-sub" style="font-family:var(--font-label); font-size:8px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#20253A">Scroll down</div>
+  </div>
 
   <section id="doors" style="position:relative; padding:clamp(52px,6vw,92px) clamp(20px,6vw,56px) clamp(72px,8vw,116px)">
     <div style="max-width:1320px; margin:0 auto">
@@ -245,6 +281,7 @@
 class Component extends DCLogic {
   componentDidMount() {
     this._light();
+    this._compass();
     const seen = location.hash === '#doors';
     if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) {
       // the custom element may not be upgraded yet; keep asking until it can skip,
@@ -308,8 +345,33 @@ class Component extends DCLogic {
     apply();
   }
 
+  // pocket transit: graduated ring, then the sweep, fired off the hero-settled event
+  _compass() {
+    const wrap = document.getElementById('ns-compass');
+    if (!wrap || wrap._wired) return;
+    wrap._wired = true;
+
+    const run = () => {
+      wrap.classList.add('is-active', 'sweep');
+      this._capTimer = setTimeout(() => wrap.classList.add('caption-in'), 1400);
+    };
+    this._onSettled = () => run();
+    document.addEventListener('ns-intro-settled', this._onSettled, { once: true });
+    // already settled before this mounted (deep link to #doors, reduced motion)
+    if (location.hash === '#doors' || document.documentElement.classList.contains('ns-skip')) run();
+
+    // it points at what is below; once you are below, it has said its piece
+    this._onCompassScroll = () => {
+      wrap.classList.toggle('is-past', window.scrollY > window.innerHeight * 0.6);
+    };
+    addEventListener('scroll', this._onCompassScroll, { passive: true });
+    this._onCompassScroll();
+  }
+
   componentWillUnmount() {
-    clearTimeout(this._introTimer); clearTimeout(this._seenTimer);
+    clearTimeout(this._introTimer); clearTimeout(this._seenTimer); clearTimeout(this._capTimer);
+    if (this._onSettled) document.removeEventListener('ns-intro-settled', this._onSettled);
+    if (this._onCompassScroll) removeEventListener('scroll', this._onCompassScroll);
     if (this._io) this._io.disconnect();
     if (this._onScroll) { removeEventListener('scroll', this._onScroll); removeEventListener('resize', this._onScroll); }
   }

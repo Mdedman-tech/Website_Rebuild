@@ -102,9 +102,17 @@
     }
     disconnectedCallback() { this._dead = true; if (this._raf) cancelAnimationFrame(this._raf); }
 
+    // fires once, whenever the hero has come to rest (normal end, skip, or reduced motion)
+    _settled() {
+      if (this._settledFired) return;
+      this._settledFired = true;
+      document.dispatchEvent(new CustomEvent('ns-intro-settled'));
+    }
+
     finish() {
       // asked to skip before the element has built: build straight to the end state
-      if (!this._plate) { this._skip = true; return; }
+      if (!this._plate) { this._skip = true; this._settled(); return; }
+      this._settled();
       this._dead = true;
       if (this._raf) cancelAnimationFrame(this._raf);
       if (this._plate) { this._plate.style.transition = 'opacity 260ms ease'; this._plate.style.opacity = '0'; }
@@ -259,6 +267,7 @@
         cream.style.transition = 'none';
         cream.style.opacity = '1';
         this._dead = true;
+        this._settled();
         return;
       }
       this._raf = requestAnimationFrame(draw);
@@ -338,6 +347,7 @@
         if (p < 1) { this._raf = requestAnimationFrame(frame); return; }
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         plate.style.display = 'none';
+        this._settled();
       };
       this._raf = requestAnimationFrame(frame);
     }

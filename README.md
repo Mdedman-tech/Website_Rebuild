@@ -23,6 +23,12 @@ no package manager.
 | `topo-texture.js` | Topographic watermark generator |
 | `image-slot.js` | Drag-and-drop image placeholder component |
 
+The landing page's pocket-transit compass is two PNG layers in
+`assets/compass/` (`Compass_Body.png`, `Compass_Needle.png`). The needle layer
+rotates north to south once the intro settles, driven by the `ns-intro-settled`
+event dispatched from `arkansas-intro.js`, never a fixed timer, so SKIP INTRO and
+reduced-motion both land correctly.
+
 ## Standalone builds
 
 `Natural State Medicinals - *.html` are single-file offline builds with every asset
@@ -34,7 +40,8 @@ them from the `.dc.html` files rather than editing them.
 ## Assets
 
 `assets/` holds all photography and brand marks, grouped by subject: `brand/`,
-`team/`, `grow/`, `facility/`, `flower/`, `lab/`, `kitchen/`, `packaging/`, `extract/`.
+`team/`, `grow/`, `facility/`, `flower/`, `lab/`, `kitchen/`, `packaging/`,
+`extract/`, `compass/`.
 
 `_ds/` holds the bound Natural State design system: color and type tokens, the
 marketing UI kit, and the component bundle. Pages load `colors_and_type.css` from
