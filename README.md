@@ -10,8 +10,8 @@ no package manager.
 |---|---|
 | `Natural State Medicinals.dc.html` | Landing (Arkansas topo intro, survey-marker nav) |
 | `About Us.dc.html` | About us |
-| `How to Get a Card.dc.html` | How to get a card (tabbed) |
-| `Check Your Allotment.dc.html` | Check your allotment (14-day ledger) |
+| `How to Get a Card.dc.html` | How to get a card (seven chapters, fixed chapter rail) |
+| `Check Your Allotment.dc.html` | Check your allotment (state Limit Meter walkthrough) |
 
 ## Supporting scripts
 
@@ -33,9 +33,27 @@ reduced-motion both land correctly.
 
 `Natural State Medicinals - *.html` are single-file offline builds with every asset
 inlined. They are large (3 to 8 MB) and are generated output, not source. Regenerate
-them from the `.dc.html` files rather than editing them.
+them from the `.dc.html` files rather than editing them. Only the landing build is
+current; the others were removed after their pages were rebuilt.
 
 `*.src.html` files are the inliner inputs for those builds.
+
+## Page notes
+
+How to get a card is one continuous read, not tabs. Seven chapters, a fixed chapter
+rail beside the text on wide screens, a compact progress bar below 1080px, and a
+"keep going" hand-off at the foot of every chapter. Body copy stays visible with no
+JavaScript; the entrance animation only arms once the script is running.
+
+Check your allotment does not track purchases. Arkansas holds the official count and
+the dispensary register reads it, so the page explains how to find the state's own
+Limit Meter. The fourteen-day figure is scroll-driven: days light as they pass and
+the first day's weight steps off on day fifteen.
+
+About us is people first, and ends in a scatter of crew polaroids that straighten as
+you scroll into them. Four `image-slot` placeholders there are waiting on photos
+from kitchen, extraction, packaging, and delivery, and every caption still needs a
+real name and role.
 
 ## Assets
 
@@ -62,7 +80,39 @@ sibling scripts and assets.
 
 Then open http://localhost:8000/Natural%20State%20Medicinals.dc.html
 
+## Education guide
+
+The guide lives in its own repo and is served by GitHub Pages. In-site
+Education links point at that URL for now, because GitHub Pages, the demo host,
+cannot serve another site under our own path.
+
+Go-live plan on Wix: Wix has no rewrite or proxy feature, so the guide cannot be
+served from naturalstatemeds.com by Wix alone. Put Cloudflare in front of the
+domain instead:
+
+1. Move DNS for naturalstatemeds.com to Cloudflare, proxied. Wix keeps serving
+   the site.
+2. Add a Worker on the route naturalstatemeds.com/education/* that fetches from
+   mdedman-tech.github.io/Natural-State-Education-Guide/ and returns the
+   response. Everything else falls through to Wix untouched.
+3. Change the four Education links to /education/. They are in:
+   Natural State Medicinals.dc.html, Landing Standalone.src.html,
+   About Us.dc.html, How to Get a Card.dc.html.
+4. Confirm the guide's own CSS, fonts, and images load. If any of its paths
+   start at the site root they will 404 through the proxy and need to be made
+   relative, or the guide needs its base path set to /education/.
+
 ## Not yet built
 
-Find our product, and Contact. Education and product locator currently point to
-live external URLs.
+Find our product, and Contact. The product locator still points to a live
+external URL.
+
+## Open items
+
+- Crew names and roles for the About us polaroid captions.
+- Staff photos for kitchen, extraction, packaging, and delivery.
+- Confirm two facts with ADH: visiting patient card length, and the caregiver
+  background check fee.
+- Voice pass on the landing page and About us. Allotment and the card page are done.
+- Performance: subset the fonts, serve photography as WebP or AVIF, lazy-load
+  below the fold. Fold this into any Wix or Cloudflare migration.

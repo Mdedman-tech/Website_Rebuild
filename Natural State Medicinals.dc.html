@@ -55,29 +55,41 @@
 
   /* pocket transit, bottom right of the hero */
   .ns-compass-wrap { opacity:0; transition:opacity 500ms ease; }
-  .ns-compass-wrap.is-active { opacity:1; }
+  .ns-compass-wrap.is-active { opacity:.82; }
   .ns-compass-cap, .ns-compass-sub { opacity:0; transition:opacity 500ms ease; }
-  .ns-compass-wrap.caption-in .ns-compass-cap { opacity:.9; }
-  .ns-compass-wrap.caption-in .ns-compass-sub { opacity:.55; }
-  .ns-compass-wrap.is-past { opacity:0 !important; }
+  .ns-compass-wrap.caption-in .ns-compass-cap { opacity:.73; }
+  .ns-compass-wrap.caption-in .ns-compass-sub { opacity:.55; animation:nsSubBounce 5s cubic-bezier(.2,.7,.25,1) infinite; }
+  /* the needle hands its momentum to the line below it */
+  @keyframes nsSubBounce {
+    0%, 9%, 100% { transform:translateY(0); }
+    3.2% { transform:translateY(3px); }
+    6% { transform:translateY(-1px); }
+  }
+  .ns-compass-wrap.is-active { transition:opacity 260ms cubic-bezier(.2,.7,.25,1); }
   /* both layers share the 1200x1500 canvas; boss/pivot sits at (600,674) */
-  .ns-compass { position:relative; width:150px; aspect-ratio:1200/1500; filter:drop-shadow(0 5px 12px rgba(32,37,58,.24)); }
+  /* art occupies y 4.1%–84.9% of the 1200x1500 canvas; negative margins crop the dead space
+     so the caption sits close to the instrument (% margins resolve against width) */
+  .ns-compass { position:relative; width:118px; aspect-ratio:1200/1500; margin:-5.2% 0 -18.9%; filter:drop-shadow(0 4px 10px rgba(32,37,58,.22)); }
   .ns-compass img { position:absolute; inset:0; width:100%; height:auto; }
-  .ns-needle { transform-origin:50% 44.9%; transform:translate(-0.25%,0.2%) rotate(0deg); }
-  .ns-compass-wrap.sweep .ns-needle { animation:nsSweepSouth 1500ms cubic-bezier(.22,1,.36,1) 200ms forwards; }
+  .ns-needle { transform-origin:50% 44.9%; will-change:transform; backface-visibility:hidden; transform:translate(-0.25%,0.2%) rotate(0deg); }
+  .ns-compass-wrap.sweep .ns-needle { animation:nsSweepSouth 2300ms linear 200ms forwards; }
   @keyframes nsSweepSouth {
-    0% { transform:translate(-0.25%,0.2%) rotate(0deg); }
-    82% { transform:translate(-0.25%,0.2%) rotate(184deg); }
+    0%   { transform:translate(-0.25%,0.2%) rotate(0deg);   animation-timing-function:cubic-bezier(.42,0,.58,1); }
+    58%  { transform:translate(-0.25%,0.2%) rotate(268deg); animation-timing-function:cubic-bezier(.42,0,.58,1); }
+    80%  { transform:translate(-0.25%,0.2%) rotate(150deg); animation-timing-function:cubic-bezier(.42,0,.58,1); }
+    91%  { transform:translate(-0.25%,0.2%) rotate(192deg); animation-timing-function:cubic-bezier(.42,0,.58,1); }
+    97%  { transform:translate(-0.25%,0.2%) rotate(176deg); animation-timing-function:cubic-bezier(.42,0,.58,1); }
     100% { transform:translate(-0.25%,0.2%) rotate(180deg); }
   }
   @media (prefers-reduced-motion: reduce) {
     .ns-compass-wrap, .ns-compass-cap, .ns-compass-sub { transition:none; }
+    .ns-compass-wrap.caption-in .ns-compass-sub { animation:none; }
     .ns-compass-wrap.sweep .ns-needle { animation:none; transform:translate(-0.25%,0.2%) rotate(180deg); }
   }
   @media (max-width:600px) {
     .ns-compass-wrap { right:16px !important; bottom:16px !important; }
-    .ns-compass { width:112px !important; }
-    .ns-compass-cap { font-size:9px !important; letter-spacing:.2em !important; }
+    .ns-compass { width:92px !important; }
+    .ns-compass-cap { width:108px !important; }
   }
 
   [data-reveal] { opacity:0; transform:translateY(18px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.25,1); }
@@ -144,13 +156,18 @@
 
   </section>
 
-  <div class="ns-compass-wrap" id="ns-compass" aria-hidden="true" style="position:fixed; right:24px; bottom:24px; z-index:40; display:flex; flex-direction:column; align-items:center; gap:10px; pointer-events:none">
-    <div class="ns-compass-cap" style="font-family:var(--font-label); font-size:10px; font-weight:600; letter-spacing:.25em; text-transform:uppercase; color:#20253A">Find your natural state</div>
+  <div class="ns-compass-wrap" id="ns-compass" aria-hidden="true" style="position:fixed; right:24px; bottom:24px; z-index:40; display:flex; flex-direction:column; align-items:center; gap:4px; pointer-events:none">
+    <svg class="ns-compass-cap" viewBox="0 0 160 30" style="width:140px; height:auto; margin-bottom:-3px">
+      <path id="ns-cap-arc" d="M 10 28 A 150 150 0 0 1 150 28" fill="none"></path>
+      <text style="font-family:var(--font-label); font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; fill:#20253A">
+        <textPath href="#ns-cap-arc" startOffset="50%" text-anchor="middle">Set your bearing</textPath>
+      </text>
+    </svg>
     <div class="ns-compass">
       <img src="assets/compass/Compass_Body.png" alt="">
       <img class="ns-needle" src="assets/compass/Compass_Needle.png" alt="">
     </div>
-    <div class="ns-compass-sub" style="font-family:var(--font-label); font-size:8px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#20253A">Scroll down</div>
+    <div class="ns-compass-sub" style="margin-top:4px; font-family:var(--font-label); font-size:8px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#20253A">Scroll down</div>
   </div>
 
   <section id="doors" style="position:relative; padding:clamp(52px,6vw,92px) clamp(20px,6vw,56px) clamp(72px,8vw,116px)">
@@ -353,16 +370,21 @@ class Component extends DCLogic {
 
     const run = () => {
       wrap.classList.add('is-active', 'sweep');
-      this._capTimer = setTimeout(() => wrap.classList.add('caption-in'), 1400);
+      this._capTimer = setTimeout(() => wrap.classList.add('caption-in'), 2150);
     };
     this._onSettled = () => run();
     document.addEventListener('ns-intro-settled', this._onSettled, { once: true });
     // already settled before this mounted (deep link to #doors, reduced motion)
     if (location.hash === '#doors' || document.documentElement.classList.contains('ns-skip')) run();
 
-    // it points at what is below; once you are below, it has said its piece
+    // it points at what is below; it fades out as soon as you start moving, gone by ~30vh
     this._onCompassScroll = () => {
-      wrap.classList.toggle('is-past', window.scrollY > window.innerHeight * 0.6);
+      if (!wrap.classList.contains('is-active')) return;
+      const span = window.innerHeight * 0.3;
+      if (window.scrollY >= span) this._compassSeen = true;
+      const f = 1 - Math.min(1, window.scrollY / span);
+      // first time it is a full statement; on the way back it is only a quiet reminder
+      wrap.style.opacity = (f * (this._compassSeen ? 0.25 : 0.82)).toFixed(3);
     };
     addEventListener('scroll', this._onCompassScroll, { passive: true });
     this._onCompassScroll();
