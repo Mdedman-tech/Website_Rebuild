@@ -7,13 +7,13 @@
 <template id="__bundler_thumbnail" data-bg-color="#F5F4E1">
   <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
     <rect width="1200" height="800" fill="#F5F4E1"/>
-    <g fill="none" stroke="#B79550" stroke-width="6" opacity=".55">
+    <g fill="none" stroke="#B79550" stroke-width="6" opacity=".5">
       <path d="M180 470c120-70 250 40 380-30s250-120 460-40"/>
       <path d="M180 560c120-70 250 40 380-30s250-120 460-40"/>
       <path d="M180 380c120-70 250 40 380-30s250-120 460-40"/>
     </g>
-    <path d="M600 250c-38 0-68 30-68 68 0 50 68 112 68 112s68-62 68-112c0-38-30-68-68-68z" fill="#B79550"/>
-    <circle cx="600" cy="318" r="22" fill="#F5F4E1"/>
+    <text x="600" y="430" text-anchor="middle" font-family="Georgia,serif" font-size="200" fill="#20253A">NSM</text>
+    <text x="600" y="530" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="46" letter-spacing="10" fill="#7A5F28">LANDING</text>
   </svg>
 </template>
 </head>
@@ -28,12 +28,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap">
 <script src="_ds/natural-state-design-system-019df9aa-a367-7899-b1ed-f3a99f259508/_ds_bundle.js"></script>
 <script src="./ar-elevation.js"></script>
-<script src="./arkansas-intro.js"></script>
 <style>
   :root { color-scheme: light only;
     --ns-arctic:#F5F4E1; --ns-midnight:#20253A; --ns-bronze:#B79550; --ns-cream:#F6E7D7;
-    --ns-bronze-dark:#97793c; --ns-bronze-light:#cdb074;
-    --text-strong:#20253A; --text-body:rgba(32,37,58,0.88); --text-muted:rgba(32,37,58,0.60);
+    --ns-bronze-dark:#97793c; --ns-bronze-ink:#7A5F28; --ns-bronze-light:#cdb074;
+    --text-strong:#20253A; --text-body:rgba(32,37,58,0.88); --text-muted:rgba(32,37,58,0.78);
     --hair:rgba(32,37,58,0.12);
     --font-display:'Burford','Playfair Display',Georgia,serif;
     --font-sans:'Work Sans',system-ui,-apple-system,sans-serif;
@@ -59,8 +58,50 @@
   .ns-hrule  { transform-origin:center; animation:nsRule 1.2s cubic-bezier(.2,.7,.25,1) 5.2s both; }
   .ns-scroll { animation:nsRise 1s cubic-bezier(.2,.7,.25,1) 6.2s both, nsFloat 3s ease-in-out 7.2s infinite; }
 
+  html.ns-skip .ns-skipbtn { display:none; }
+  .ns-skipbtn { transition:opacity .4s ease, border-color .22s ease, color .22s ease; }
+  .ns-skipbtn.is-gone { opacity:0; pointer-events:none; visibility:hidden; }
   html.ns-skip .ns-mark, html.ns-skip .ns-estd, html.ns-skip .ns-hrule, html.ns-skip .ns-scroll {
     animation:none !important; opacity:1 !important; transform:none !important; filter:none !important;
+  }
+
+  /* pocket transit, bottom right of the hero */
+  .ns-compass-wrap { opacity:0; transition:opacity 500ms ease; }
+  .ns-compass-wrap.is-active { opacity:.82; }
+  .ns-compass-cap, .ns-compass-sub { opacity:0; transition:opacity 500ms ease; }
+  .ns-compass-wrap.caption-in .ns-compass-cap { opacity:.73; }
+  .ns-compass-wrap.caption-in .ns-compass-sub { opacity:.55; animation:nsSubBounce 5s cubic-bezier(.2,.7,.25,1) infinite; }
+  /* the needle hands its momentum to the line below it */
+  @keyframes nsSubBounce {
+    0%, 9%, 100% { transform:translateY(0); }
+    3.2% { transform:translateY(3px); }
+    6% { transform:translateY(-1px); }
+  }
+  .ns-compass-wrap.is-active { transition:opacity 260ms cubic-bezier(.2,.7,.25,1); }
+  /* both layers share the 1200x1500 canvas; boss/pivot sits at (600,674) */
+  /* art occupies y 4.1%–84.9% of the 1200x1500 canvas; negative margins crop the dead space
+     so the caption sits close to the instrument (% margins resolve against width) */
+  .ns-compass { position:relative; width:118px; aspect-ratio:1200/1500; margin:-5.2% 0 -18.9%; filter:drop-shadow(0 4px 10px rgba(32,37,58,.22)); }
+  .ns-compass img { position:absolute; inset:0; width:100%; height:auto; }
+  .ns-needle { transform-origin:50% 44.9%; will-change:transform; backface-visibility:hidden; transform:translate(-0.25%,0.2%) rotate(0deg); }
+  .ns-compass-wrap.sweep .ns-needle { animation:nsSweepSouth 2300ms linear 200ms forwards; }
+  @keyframes nsSweepSouth {
+    0%   { transform:translate(-0.25%,0.2%) rotate(0deg);   animation-timing-function:cubic-bezier(.42,0,.58,1); }
+    58%  { transform:translate(-0.25%,0.2%) rotate(268deg); animation-timing-function:cubic-bezier(.42,0,.58,1); }
+    80%  { transform:translate(-0.25%,0.2%) rotate(150deg); animation-timing-function:cubic-bezier(.42,0,.58,1); }
+    91%  { transform:translate(-0.25%,0.2%) rotate(192deg); animation-timing-function:cubic-bezier(.42,0,.58,1); }
+    97%  { transform:translate(-0.25%,0.2%) rotate(176deg); animation-timing-function:cubic-bezier(.42,0,.58,1); }
+    100% { transform:translate(-0.25%,0.2%) rotate(180deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ns-compass-wrap, .ns-compass-cap, .ns-compass-sub { transition:none; }
+    .ns-compass-wrap.caption-in .ns-compass-sub { animation:none; }
+    .ns-compass-wrap.sweep .ns-needle { animation:none; transform:translate(-0.25%,0.2%) rotate(180deg); }
+  }
+  @media (max-width:600px) {
+    .ns-compass-wrap { right:16px !important; bottom:16px !important; }
+    .ns-compass { width:92px !important; }
+    .ns-compass-cap { width:108px !important; }
   }
 
   [data-reveal] { opacity:0; transform:translateY(18px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.25,1); }
@@ -68,7 +109,7 @@
 
   /* survey stations */
   @keyframes nsPing { 0% { transform:scale(.45); opacity:.6; } 70% { transform:scale(2.5); opacity:0; } 100% { transform:scale(2.5); opacity:0; } }
-  .ns-stage:hover .ns-station { opacity:.28; }
+  .ns-stage:hover .ns-station { opacity:.72; }
   .ns-stage:hover .ns-station:hover { opacity:1; }
   .ns-station { transition:opacity .35s cubic-bezier(.2,.7,.25,1); }
   /* map pin: teardrop head, cast shadow on the ground, survey ring at its base */
@@ -78,6 +119,15 @@
   .ns-station:hover .ns-pin { transform:rotate(-45deg) translate(2.8px,-2.8px); background:#97793c; box-shadow:0 6px 12px rgba(32,37,58,.3); }
   .ns-pinshadow { position:absolute; left:7px; bottom:2px; width:12px; height:4px; border-radius:50%; background:rgba(32,37,58,.34); filter:blur(1.5px); transition:transform .38s cubic-bezier(.2,.7,.25,1), opacity .38s ease; }
   .ns-station:hover .ns-pinshadow { transform:scale(.66); opacity:.55; }
+  .ns-station:focus-visible { outline:2px solid #7A5F28; outline-offset:10px; opacity:1; }
+  .ns-stage:focus-within .ns-station { opacity:.72; }
+  .ns-station:focus-visible .ns-pin { transform:rotate(-45deg) translate(2.8px,-2.8px); background:#97793c; }
+  .ns-station:focus-visible .ns-title { transform:translateX(4px) scale(1.045); }
+  .ns-station:focus-visible .ns-lead { width:64px; }
+  .ns-primary .ns-pinwrap { transform:scale(1.28); transform-origin:bottom left; }
+  .ns-quiet .ns-pinwrap { transform:scale(.82); transform-origin:bottom left; }
+  .ns-quiet .ns-title { font-weight:400; }
+  a:focus-visible { outline:2px solid #7A5F28; outline-offset:3px; }
   .ns-station .ns-lead { transition:width .45s cubic-bezier(.2,.7,.25,1); }
   .ns-station:hover .ns-lead { width:64px; }
   .ns-station .ns-title { display:inline-block; transform-origin:left center; transition:transform .4s cubic-bezier(.2,.7,.25,1); }
@@ -104,28 +154,45 @@
 
     <x-import component-from-global-scope="arkansas-intro" from="./arkansas-intro.js" hint-size="100%,100%"></x-import>
 
+    <button class="ns-skipbtn" type="button" onClick="{{ skipIntro }}" style="position:absolute; top:20px; right:20px; z-index:20; min-height:36px; padding:0 16px; background:rgba(18,22,36,.55); border:1px solid rgba(245,244,225,.55); border-radius:4px; color:#F5F4E1; font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; cursor:pointer" style-hover="border-color:rgba(245,244,225,.8); color:#F5F4E1">Skip intro</button>
+
     <div style="position:relative; display:flex; flex-direction:column; align-items:center; gap:min(clamp(14px,2.4vh,26px), 3svh)">
       <div class="ns-mark" style="position:relative; width:min(clamp(240px,34vw,470px), 40svh); line-height:0">
-        <img src="assets/logo-primary-light.png" alt="Natural State Medicinals" style="width:100%; height:auto; display:block; filter:drop-shadow(0 3px 5px rgba(32,37,58,.22)) drop-shadow(0 30px 52px rgba(32,37,58,.34))">
+        <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none; -webkit-mask-image:url(assets/logo-silhouette-mask.png); mask-image:url(assets/logo-silhouette-mask.png); -webkit-mask-size:100% 100%; mask-size:100% 100%; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat; background:rgba(245,244,225,.8); backdrop-filter:blur(9px) saturate(1.04); -webkit-backdrop-filter:blur(9px) saturate(1.04)"></div>
+        <img src="assets/logo-primary-light.png" alt="Natural State Medicinals" style="position:relative; width:100%; height:auto; display:block; filter:drop-shadow(0 3px 5px rgba(32,37,58,.22)) drop-shadow(0 30px 52px rgba(32,37,58,.34))">
         <div class="ns-sheen" aria-hidden="true" style="position:absolute; inset:0; pointer-events:none; -webkit-mask-image:url(assets/logo-primary-light.png); mask-image:url(assets/logo-primary-light.png); -webkit-mask-size:100% 100%; mask-size:100% 100%; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat; background-image:radial-gradient(115% 95% at 50% -25%, rgba(255,252,240,.75) 0%, rgba(212,184,120,.34) 34%, rgba(212,184,120,0) 66%); mix-blend-mode:screen"></div>
       </div>
 
-      <div class="ns-estd" style="font-family:var(--font-label); font-size:min(11px,2.1svh); font-weight:600; letter-spacing:.34em; text-transform:uppercase; color:var(--ns-bronze)">Cultivated in Arkansas</div>
+      <div class="ns-estd" style="font-family:var(--font-label); font-size:min(11px,2.1svh); font-weight:600; letter-spacing:.34em; text-transform:uppercase; color:var(--ns-bronze-ink)">Cultivated in Arkansas</div>
     </div>
 
   </section>
 
+  <div class="ns-compass-wrap" id="ns-compass" aria-hidden="true" style="position:fixed; right:24px; bottom:24px; z-index:40; display:flex; flex-direction:column; align-items:center; gap:4px; pointer-events:none">
+    <svg class="ns-compass-cap" viewBox="0 0 160 30" style="width:140px; height:auto; margin-bottom:-3px">
+      <path id="ns-cap-arc" d="M 10 28 A 150 150 0 0 1 150 28" fill="none"></path>
+      <text style="font-family:var(--font-label); font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; fill:#20253A">
+        <textPath href="#ns-cap-arc" startOffset="50%" text-anchor="middle">Set your bearing</textPath>
+      </text>
+    </svg>
+    <div class="ns-compass">
+      <img src="assets/compass/Compass_Body.png" alt="">
+      <img class="ns-needle" src="assets/compass/Compass_Needle.png" alt="">
+    </div>
+    <div class="ns-compass-sub" style="margin-top:4px; font-family:var(--font-label); font-size:8px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#20253A">Scroll down</div>
+  </div>
+
   <section id="doors" style="position:relative; padding:clamp(52px,6vw,92px) clamp(20px,6vw,56px) clamp(72px,8vw,116px)">
     <div style="max-width:1320px; margin:0 auto">
       <div data-reveal="" style="display:flex; align-items:baseline; gap:18px; flex-wrap:wrap; margin-bottom:clamp(28px,4vw,56px)">
-        <span style="font-family:var(--font-label); font-size:11px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--ns-bronze)">Where would you like to start</span>
+        <span style="font-family:var(--font-label); font-size:11px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--ns-bronze-ink)">Where would you like to start</span>
         <span style="flex:1; min-width:60px; height:1px; background:var(--hair)"></span>
 
       </div>
 
       <div class="ns-stage" style="position:relative; display:grid; grid-template-columns:repeat(12,1fr); grid-auto-rows:minmax(0,auto); row-gap:clamp(34px,5vw,74px); column-gap:clamp(16px,2vw,32px)">
 
-        <a class="ns-station" data-reveal="" href="About Us.dc.html" style="grid-column:1 / span 4; display:block">
+        <a class="ns-station ns-primary" data-reveal="" href="https://mdedman-tech.github.io/Natural-State-Education-Guide/" target="_blank" rel="noopener" style="grid-column:1 / span 5; display:block">
           <span style="display:flex; align-items:flex-end; height:34px">
             <span class="ns-pinwrap">
               <span class="ns-ping"></span>
@@ -135,13 +202,45 @@
             <span class="ns-lead" style="width:38px; height:1px; background:#B79550; opacity:.55; margin-bottom:3px"></span>
           </span>
           <div style="margin-top:14px; display:flex; align-items:baseline; gap:12px">
-            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze)">01</span>
-            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(25px,2.85vw,39px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">About us</span>
+            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze-ink)">01</span>
+            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(31px,3.7vw,52px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">Education</span>
+          </div>
+          <p style="margin:12px 0 0; max-width:34ch; font-size:16px; line-height:1.62; color:var(--text-muted)">A patient’s guide to the plant, the practice, and the products.</p>
+        </a>
+
+        <a class="ns-station ns-primary" data-reveal="" href="https://www.naturalstatemeds.com/find-our-products" target="_blank" rel="noopener" style="grid-column:7 / span 5; align-self:end; display:block">
+          <span style="display:flex; align-items:flex-end; height:34px">
+            <span class="ns-pinwrap">
+              <span class="ns-ping"></span>
+              <span class="ns-pinshadow"></span>
+              <span class="ns-pin"></span>
+            </span>
+            <span class="ns-lead" style="width:38px; height:1px; background:#B79550; opacity:.55; margin-bottom:3px"></span>
+          </span>
+          <div style="margin-top:14px; display:flex; align-items:baseline; gap:12px">
+            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze-ink)">02</span>
+            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(31px,3.7vw,52px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">Find our product</span>
+          </div>
+          <p style="margin:12px 0 0; max-width:34ch; font-size:16px; line-height:1.62; color:var(--text-muted)">Arkansas dispensaries carrying Natural State right now.</p>
+        </a>
+
+        <a class="ns-station" data-reveal="" href="About Us.dc.html" style="grid-column:2 / span 4; display:block">
+          <span style="display:flex; align-items:flex-end; height:34px">
+            <span class="ns-pinwrap">
+              <span class="ns-ping"></span>
+              <span class="ns-pinshadow"></span>
+              <span class="ns-pin"></span>
+            </span>
+            <span class="ns-lead" style="width:38px; height:1px; background:#B79550; opacity:.55; margin-bottom:3px"></span>
+          </span>
+          <div style="margin-top:14px; display:flex; align-items:baseline; gap:12px">
+            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze-ink)">03</span>
+            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(24px,2.6vw,35px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">About us</span>
           </div>
           <p style="margin:12px 0 0; max-width:32ch; font-size:15px; line-height:1.62; color:var(--text-muted)">Who grows it, where it is grown, and why we do it the slow way.</p>
         </a>
 
-        <a class="ns-station" data-reveal="" href="https://mdedman-tech.github.io/Natural-State-Education-Guide/" target="_blank" rel="noopener" style="grid-column:6 / span 4; align-self:end; display:block">
+        <a class="ns-station" data-reveal="" href="How to Get a Card.dc.html" style="grid-column:7 / span 4; align-self:end; display:block">
           <span style="display:flex; align-items:flex-end; height:34px">
             <span class="ns-pinwrap">
               <span class="ns-ping"></span>
@@ -151,61 +250,13 @@
             <span class="ns-lead" style="width:38px; height:1px; background:#B79550; opacity:.55; margin-bottom:3px"></span>
           </span>
           <div style="margin-top:14px; display:flex; align-items:baseline; gap:12px">
-            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze)">02</span>
-            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(25px,2.85vw,39px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">Education</span>
-          </div>
-          <p style="margin:12px 0 0; max-width:32ch; font-size:15px; line-height:1.62; color:var(--text-muted)">A patient’s guide to the plant, the practice, and the products.</p>
-        </a>
-
-        <a class="ns-station" data-reveal="" href="https://www.naturalstatemeds.com/find-our-products" target="_blank" rel="noopener" style="grid-column:10 / span 3; display:block">
-          <span style="display:flex; align-items:flex-end; height:34px">
-            <span class="ns-pinwrap">
-              <span class="ns-ping"></span>
-              <span class="ns-pinshadow"></span>
-              <span class="ns-pin"></span>
-            </span>
-            <span class="ns-lead" style="width:38px; height:1px; background:#B79550; opacity:.55; margin-bottom:3px"></span>
-          </span>
-          <div style="margin-top:14px; display:flex; align-items:baseline; gap:12px">
-            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze)">03</span>
-            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(25px,2.85vw,39px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">Find our product</span>
-          </div>
-          <p style="margin:12px 0 0; max-width:30ch; font-size:15px; line-height:1.62; color:var(--text-muted)">Arkansas dispensaries carrying Natural State right now.</p>
-        </a>
-
-        <a class="ns-station" data-reveal="" href="#doors" style="grid-column:3 / span 4; display:block">
-          <span style="display:flex; align-items:flex-end; height:34px">
-            <span class="ns-pinwrap">
-              <span class="ns-ping"></span>
-              <span class="ns-pinshadow"></span>
-              <span class="ns-pin"></span>
-            </span>
-            <span class="ns-lead" style="width:38px; height:1px; background:#B79550; opacity:.55; margin-bottom:3px"></span>
-          </span>
-          <div style="margin-top:14px; display:flex; align-items:baseline; gap:12px">
-            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze)">04</span>
-            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(25px,2.85vw,39px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">Check your allotment</span>
-          </div>
-          <p style="margin:12px 0 0; max-width:32ch; font-size:15px; line-height:1.62; color:var(--text-muted)">Two and a half ounces every fourteen days. See where you stand.</p>
-        </a>
-
-        <a class="ns-station" data-reveal="" href="How to Get a Card.dc.html" style="grid-column:8 / span 4; align-self:end; display:block">
-          <span style="display:flex; align-items:flex-end; height:34px">
-            <span class="ns-pinwrap">
-              <span class="ns-ping"></span>
-              <span class="ns-pinshadow"></span>
-              <span class="ns-pin"></span>
-            </span>
-            <span class="ns-lead" style="width:38px; height:1px; background:#B79550; opacity:.55; margin-bottom:3px"></span>
-          </span>
-          <div style="margin-top:14px; display:flex; align-items:baseline; gap:12px">
-            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze)">05</span>
-            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(25px,2.85vw,39px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">How to get a card</span>
+            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze-ink)">04</span>
+            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(24px,2.6vw,35px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">How to get a card</span>
           </div>
           <p style="margin:12px 0 0; max-width:32ch; font-size:15px; line-height:1.62; color:var(--text-muted)">What the state asks for, what it costs, and how long it takes.</p>
         </a>
 
-        <a class="ns-station" data-reveal="" href="#doors" style="grid-column:4 / span 4; display:block">
+        <a class="ns-station" data-reveal="" href="Check Your Allotment.dc.html" style="grid-column:3 / span 4; display:block">
           <span style="display:flex; align-items:flex-end; height:34px">
             <span class="ns-pinwrap">
               <span class="ns-ping"></span>
@@ -215,12 +266,27 @@
             <span class="ns-lead" style="width:38px; height:1px; background:#B79550; opacity:.55; margin-bottom:3px"></span>
           </span>
           <div style="margin-top:14px; display:flex; align-items:baseline; gap:12px">
-            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze)">06</span>
-            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(25px,2.85vw,39px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">Contact us</span>
+            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze-ink)">05</span>
+            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(24px,2.6vw,35px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">Check your allotment</span>
           </div>
-          <p style="margin:12px 0 0; max-width:32ch; font-size:15px; line-height:1.62; color:var(--text-muted)">Questions, feedback, or a problem with a package.</p>
+          <p style="margin:12px 0 0; max-width:32ch; font-size:15px; line-height:1.62; color:var(--text-muted)">Two and a half ounces every fourteen days. See where you stand.</p>
         </a>
 
+        <a class="ns-station ns-quiet" data-reveal="" href="#doors" style="grid-column:8 / span 3; align-self:end; display:block">
+          <span style="display:flex; align-items:flex-end; height:34px">
+            <span class="ns-pinwrap">
+              <span class="ns-ping"></span>
+              <span class="ns-pinshadow"></span>
+              <span class="ns-pin"></span>
+            </span>
+            <span class="ns-lead" style="width:38px; height:1px; background:#B79550; opacity:.55; margin-bottom:3px"></span>
+          </span>
+          <div style="margin-top:14px; display:flex; align-items:baseline; gap:12px">
+            <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.22em; color:var(--ns-bronze-ink)">06</span>
+            <span class="ns-title" style="font-family:var(--font-display); font-weight:400; font-size:clamp(21px,2vw,27px); line-height:1; letter-spacing:.005em; color:var(--text-strong)">Contact us</span>
+          </div>
+          <p style="margin:12px 0 0; max-width:30ch; font-size:14.5px; line-height:1.62; color:var(--text-muted)">Questions, feedback, or a problem with a package.</p>
+        </a>
       </div>
     </div>
   </section>
@@ -244,6 +310,28 @@
 class Component extends DCLogic {
   componentDidMount() {
     this._light();
+    this._compass();
+    const seen = location.hash === '#doors';
+    if (seen || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      // the custom element may not be upgraded yet; keep asking until it can skip,
+      // and only then reveal the mark, so the logo never pops over a running intro
+      const tryFinish = (n) => {
+        const el = document.querySelector('arkansas-intro');
+        if (el && el.finish) {
+          el.finish();
+          document.documentElement.classList.add('ns-skip');
+          return;
+        }
+        if (n < 60) this._introTimer = setTimeout(() => tryFinish(n + 1), 30);
+      };
+      tryFinish(0);
+    } else {
+      this._seenTimer = setTimeout(() => {
+        const btn = document.querySelector('.ns-skipbtn');
+        if (btn) btn.classList.add('is-gone');
+      }, 5200);
+    }
+
     const targets = document.querySelectorAll('[data-reveal]');
     if (targets.length) {
       this._io = new IntersectionObserver((entries) => {
@@ -286,7 +374,38 @@ class Component extends DCLogic {
     apply();
   }
 
+  // pocket transit: graduated ring, then the sweep, fired off the hero-settled event
+  _compass() {
+    const wrap = document.getElementById('ns-compass');
+    if (!wrap || wrap._wired) return;
+    wrap._wired = true;
+
+    const run = () => {
+      wrap.classList.add('is-active', 'sweep');
+      this._capTimer = setTimeout(() => wrap.classList.add('caption-in'), 2150);
+    };
+    this._onSettled = () => run();
+    document.addEventListener('ns-intro-settled', this._onSettled, { once: true });
+    // already settled before this mounted (deep link to #doors, reduced motion)
+    if (location.hash === '#doors' || document.documentElement.classList.contains('ns-skip')) run();
+
+    // it points at what is below; it fades out as soon as you start moving, gone by ~30vh
+    this._onCompassScroll = () => {
+      if (!wrap.classList.contains('is-active')) return;
+      const span = window.innerHeight * 0.3;
+      if (window.scrollY >= span) this._compassSeen = true;
+      const f = 1 - Math.min(1, window.scrollY / span);
+      // first time it is a full statement; on the way back it is only a quiet reminder
+      wrap.style.opacity = (f * (this._compassSeen ? 0.25 : 0.82)).toFixed(3);
+    };
+    addEventListener('scroll', this._onCompassScroll, { passive: true });
+    this._onCompassScroll();
+  }
+
   componentWillUnmount() {
+    clearTimeout(this._introTimer); clearTimeout(this._seenTimer); clearTimeout(this._capTimer);
+    if (this._onSettled) document.removeEventListener('ns-intro-settled', this._onSettled);
+    if (this._onCompassScroll) removeEventListener('scroll', this._onCompassScroll);
     if (this._io) this._io.disconnect();
     if (this._onScroll) { removeEventListener('scroll', this._onScroll); removeEventListener('resize', this._onScroll); }
   }
