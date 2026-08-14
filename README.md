@@ -29,14 +29,26 @@ rotates north to south once the intro settles, driven by the `ns-intro-settled`
 event dispatched from `arkansas-intro.js`, never a fixed timer, so SKIP INTRO and
 reduced-motion both land correctly.
 
-## Standalone builds
+## Published site
 
-`Natural State Medicinals - *.html` are single-file offline builds with every asset
-inlined. They are large (3 to 8 MB) and are generated output, not source. Regenerate
-them from the `.dc.html` files rather than editing them. Only the landing build is
-current; the others were removed after their pages were rebuilt.
+GitHub Pages serves the repo root at
+https://mdedman-tech.github.io/Website_Rebuild/. Four single-file builds sit there
+with every asset inlined:
 
-`*.src.html` files are the inliner inputs for those builds.
+| URL | Page |
+|---|---|
+| `index.html` | Landing |
+| `about.html` | About us |
+| `get-a-card.html` | How to get a card |
+| `allotment.html` | Check your allotment |
+
+These are generated output, not source. Do not edit them. Regenerate from the
+`.dc.html` pages: each `*.src.html` is the inliner input, and it is the `.dc.html`
+plus a thumbnail template, with cross-page `.dc.html` links rewritten to the clean
+published filenames above. Rebuild all four whenever any page changes, so the links
+between them stay consistent.
+
+`.nojekyll` keeps Pages from running the files through Jekyll.
 
 ## Page notes
 

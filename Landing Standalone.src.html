@@ -224,7 +224,7 @@
           <p style="margin:12px 0 0; max-width:34ch; font-size:16px; line-height:1.62; color:var(--text-muted)">Arkansas dispensaries carrying Natural State right now.</p>
         </a>
 
-        <a class="ns-station" data-reveal="" href="About Us.dc.html" style="grid-column:2 / span 4; display:block">
+        <a class="ns-station" data-reveal="" href="about.html" style="grid-column:2 / span 4; display:block">
           <span style="display:flex; align-items:flex-end; height:34px">
             <span class="ns-pinwrap">
               <span class="ns-ping"></span>
@@ -240,7 +240,7 @@
           <p style="margin:12px 0 0; max-width:32ch; font-size:15px; line-height:1.62; color:var(--text-muted)">Who grows it, where it is grown, and why we do it the slow way.</p>
         </a>
 
-        <a class="ns-station" data-reveal="" href="How to Get a Card.dc.html" style="grid-column:7 / span 4; align-self:end; display:block">
+        <a class="ns-station" data-reveal="" href="get-a-card.html" style="grid-column:7 / span 4; align-self:end; display:block">
           <span style="display:flex; align-items:flex-end; height:34px">
             <span class="ns-pinwrap">
               <span class="ns-ping"></span>
@@ -256,7 +256,7 @@
           <p style="margin:12px 0 0; max-width:32ch; font-size:15px; line-height:1.62; color:var(--text-muted)">What the state asks for, what it costs, and how long it takes.</p>
         </a>
 
-        <a class="ns-station" data-reveal="" href="Check Your Allotment.dc.html" style="grid-column:3 / span 4; display:block">
+        <a class="ns-station" data-reveal="" href="allotment.html" style="grid-column:3 / span 4; display:block">
           <span style="display:flex; align-items:flex-end; height:34px">
             <span class="ns-pinwrap">
               <span class="ns-ping"></span>
@@ -374,32 +374,44 @@ class Component extends DCLogic {
     apply();
   }
 
-  // pocket transit: graduated ring, then the sweep, fired off the hero-settled event
+  // Pocket transit. Nothing here holds a node from mount time: the wrap is looked
+  // up when it is needed, so a template that is still streaming cannot lose the
+  // wiring. Fires off the hero-settled event, never a timer.
   _compass() {
-    const wrap = document.getElementById('ns-compass');
-    if (!wrap || wrap._wired) return;
-    wrap._wired = true;
+    const wrap = () => document.getElementById('ns-compass');
 
     const run = () => {
-      wrap.classList.add('is-active', 'sweep');
-      this._capTimer = setTimeout(() => wrap.classList.add('caption-in'), 2150);
+      const el = wrap();
+      if (!el) { this._compassPending = true; return; }
+      this._compassPending = false;
+      if (el.classList.contains('is-active')) return;
+      el.classList.add('is-active', 'sweep');
+      clearTimeout(this._capTimer);
+      this._capTimer = setTimeout(() => { const e = wrap(); if (e) e.classList.add('caption-in'); }, 2150);
     };
+    this._compassRun = run;
+
     this._onSettled = () => run();
-    document.addEventListener('ns-intro-settled', this._onSettled, { once: true });
-    // already settled before this mounted (deep link to #doors, reduced motion)
+    document.addEventListener('ns-intro-settled', this._onSettled);
     if (location.hash === '#doors' || document.documentElement.classList.contains('ns-skip')) run();
 
     // it points at what is below; it fades out as soon as you start moving, gone by ~30vh
     this._onCompassScroll = () => {
-      if (!wrap.classList.contains('is-active')) return;
+      const el = wrap();
+      if (!el || !el.classList.contains('is-active')) return;
       const span = window.innerHeight * 0.3;
       if (window.scrollY >= span) this._compassSeen = true;
       const f = 1 - Math.min(1, window.scrollY / span);
       // first time it is a full statement; on the way back it is only a quiet reminder
-      wrap.style.opacity = (f * (this._compassSeen ? 0.25 : 0.82)).toFixed(3);
+      el.style.opacity = (f * (this._compassSeen ? 0.25 : 0.82)).toFixed(3);
     };
     addEventListener('scroll', this._onCompassScroll, { passive: true });
     this._onCompassScroll();
+  }
+
+  componentDidUpdate() {
+    // the intro may have settled while the compass markup was still streaming
+    if (this._compassPending && this._compassRun) this._compassRun();
   }
 
   componentWillUnmount() {
