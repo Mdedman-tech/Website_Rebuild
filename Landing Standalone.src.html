@@ -127,7 +127,10 @@
   a:focus-visible { outline:2px solid #7A5F28; outline-offset:3px; }
   .ns-station .ns-lead { transition:width .45s cubic-bezier(.2,.7,.25,1); }
   .ns-station:hover .ns-lead { width:64px; }
-  .ns-station .ns-title { display:inline-block; transform-origin:left center; transition:transform .4s cubic-bezier(.2,.7,.25,1); }
+  /* Burford has no true lowercase: sentence case renders as one full cap plus
+     small caps, which reads as uneven letter heights. The stations are signage,
+     so they go all caps and sit at one height. */
+  .ns-station .ns-title { display:inline-block; text-transform:uppercase; transform-origin:left center; transition:transform .4s cubic-bezier(.2,.7,.25,1); }
   .ns-station:hover .ns-title { transform:translateX(4px) scale(1.045); }
   .ns-ping { position:absolute; left:4px; bottom:0; width:18px; height:9px; border-radius:50%; border:1px solid #B79550; }
   .ns-station .ns-ping { animation:nsPing 3.6s cubic-bezier(.2,.7,.25,1) infinite; }

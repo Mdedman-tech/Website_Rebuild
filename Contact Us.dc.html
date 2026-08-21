@@ -78,7 +78,6 @@
   <header style="position:sticky; top:0; z-index:60; background:rgba(245,244,225,.92); backdrop-filter:blur(12px) saturate(1.05); -webkit-backdrop-filter:blur(12px) saturate(1.05); border-bottom:1px solid var(--hair)">
     <div style="max-width:1240px; margin:0 auto; padding:0 clamp(20px,5vw,48px); height:62px; display:flex; align-items:center; justify-content:space-between; gap:20px">
       <a href="Natural State Medicinals.dc.html#doors" style="display:flex; align-items:center; gap:11px">
-        <img src="assets/brand/nav-mark-fanleaf-gold.png" alt="" style="width:23px; height:21px; object-fit:contain">
         <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:#20253A">Natural State Medicinals</span>
       </a>
       <span style="font-family:var(--font-label); font-size:10.5px; font-weight:600; letter-spacing:.24em; text-transform:uppercase; color:var(--ns-bronze-ink)">Contact us</span>
@@ -218,10 +217,22 @@
 
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;federalPosture&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Compliance&quot;}}">
-// Paste the Google Apps Script web app URL here once it is deployed.
-// Until then the form tells people plainly that it is not connected yet,
-// rather than swallowing a note and pretending it arrived.
-const SHEET_ENDPOINT = '';
+// The form posts to a Google Form that nobody ever sees. Forms writes each
+// submission to its response sheet and stamps its own timestamp, so there is
+// no Apps Script, no OAuth, and nothing an admin policy can switch off.
+// FIELDS maps our field names to that form's question ids. Reordering or
+// replacing a question in the Google Form breaks these; adding one at the end
+// is safe.
+const FORM_ENDPOINT = 'https://docs.google.com/forms/d/e/1FAIpQLSdiUFK5xKHs4QQYoNXQ6tKEvvtofkRuvNJrtNY0zNx9lUKz1Q/formResponse';
+const FIELDS = {
+  name: 'entry.1593067891',
+  email: 'entry.962996803',
+  dispensary: 'entry.590438848',
+  purchased: 'entry.1456214199',
+  lot: 'entry.67633498',
+  message: 'entry.2135558311',
+  route: 'entry.618553123'
+};
 
 const ROUTES = [
   { key: 'patient', num: '01', title: 'A product question',
@@ -284,16 +295,24 @@ class Component extends DCLogic {
   onSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const data = new FormData(form);
-    data.append('route', this.state.route);
-    data.append('sent', new Date().toISOString());
+    const entered = new FormData(form);
+    entered.append('route', this.state.route);
 
-    if (!SHEET_ENDPOINT) {
-      this.setState({ ok: false, status: 'The form is not connected to its inbox yet, so nothing was sent. Give us a day.' });
-      return;
-    }
+    // Google will not let a page read its reply, so the post goes out opaque
+    // and we report sent once the browser has handed it off.
+    const body = new URLSearchParams();
+    entered.forEach((value, key) => {
+      const field = FIELDS[key];
+      if (field && String(value).trim()) body.append(field, value);
+    });
+
     this.setState({ sending: true, status: 'Sending.', ok: null });
-    fetch(SHEET_ENDPOINT, { method: 'POST', body: data })
+    fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body.toString()
+    })
       .then(() => {
         form.reset();
         this.setState({ sending: false, ok: true, status: 'It came through. A person will read it and write back.' });

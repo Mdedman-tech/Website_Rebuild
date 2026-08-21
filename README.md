@@ -122,19 +122,29 @@ redirect. The Cloudflare Worker plan is no longer needed.
 
 Find our product. The locator still points to a live external URL.
 
-## The contact form is not connected
+## The contact form
 
-`Contact Us.dc.html` posts to a Google Apps Script web app. The URL is a single
-constant at the top of the logic class:
+`Contact Us.dc.html` posts to a Google Form that no visitor ever sees. Forms
+writes every submission to its response sheet and stamps its own timestamp, so
+there is no Apps Script, no OAuth consent, and nothing a Workspace policy can
+switch off.
 
-    const SHEET_ENDPOINT = '';
+Two constants at the top of the logic class hold the wiring: `FORM_ENDPOINT`, the
+form's `/formResponse` URL, and `FIELDS`, which maps each field name to that
+form's `entry.NNNN` question id.
 
-While it is empty the form refuses to send and says so plainly, rather than
-swallowing a note. To connect it: make a Sheet, Extensions then Apps Script, a
-`doPost(e)` that appends `e.parameter` as a row, deploy as a web app with access
-set to anyone, then paste the `/exec` URL into that constant and rebuild
-`contact.html`. Posts arrive as `route`, `sent`, `name`, `email`, `message`,
-and on the complaint path also `dispensary`, `purchased`, and `lot`.
+All four contact types share the one form. The route the visitor picked rides
+along in its own column as `patient`, `complaint`, `press`, or `vendor`. The
+dispensary, purchase date, and lot fields only appear on the complaint route and
+arrive empty on the other three.
+
+Do not reorder or replace questions in the Google Form. The ids in `FIELDS` are
+positional to those questions, and changing them silently drops answers. Adding a
+new question at the end is safe.
+
+Google will not let the page read its own reply, so the post goes out opaque and
+the page reports success once the browser hands it off, not once Google confirms.
+To verify a real submission, check the response sheet.
 
 ## Open items
 
