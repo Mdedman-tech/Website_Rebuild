@@ -95,12 +95,25 @@
 
   class ArkansasIntro extends HTMLElement {
     connectedCallback() {
-      if (this._booted) return;
+      // A remount (React reparenting the host) used to leave the element booted but
+      // dead, so nothing ever drew. If we come back without having built, build.
+      if (this._booted) {
+        if (!this._plate && !this._cream) {
+          this._dead = false;
+          requestAnimationFrame(() => this._build());
+        }
+        return;
+      }
       this._booted = true;
       this.style.cssText = 'display:block;position:absolute;inset:0;overflow:hidden;pointer-events:none';
       requestAnimationFrame(() => this._build());
+      // A remount can kill the first attempt between the frame and the build, so
+      // check once that something actually drew.
+      this._buildGuard = setTimeout(() => {
+        if (!this._plate && !this._cream && this.isConnected) { this._dead = false; this._build(); }
+      }, 400);
     }
-    disconnectedCallback() { this._dead = true; if (this._raf) cancelAnimationFrame(this._raf); }
+    disconnectedCallback() { this._dead = true; clearTimeout(this._buildGuard); if (this._raf) cancelAnimationFrame(this._raf); }
 
     // fires once, whenever the hero has come to rest (normal end, skip, or reduced motion)
     _settled() {
@@ -120,6 +133,8 @@
     }
 
     _build() {
+      if (!this.isConnected) return;
+      if (this._dead && !this._plate && !this._cream) this._dead = false;
       if (this._dead) return;
       const G = window.AR_ELEV;
       if (!G) { this.style.display = 'none'; return; }
@@ -160,18 +175,28 @@
         const reps = Math.ceil((hostH - g.gridTop) / tile) + 1;
         for (let r = 0; r < reps; r++) {
           wx.save();
-          if (r > 0) wx.translate(0, tile * r);
+          // Every other pass is mirrored, so the contours meet exactly at each
+          // seam and the relief reads as one continuous sheet rather than a
+          // stack of tiles.
+          if (r % 2 === 1) {
+            wx.translate(0, 2 * g.gridTop + tile * (r + 1));
+            wx.scale(1, -1);
+          } else if (r > 0) {
+            wx.translate(0, tile * r);
+          }
           for (let l = 0; l < bands.length; l++) {
             const major = l % 5 === 0;
+            // A printed line, not an embossed haze: the ink carries the shape and
+            // the pale edge is only there to seat it in the paper.
             wx.save();
-            wx.translate(0, 1);
-            wx.globalAlpha = major ? 0.5 : 0.3;
-            wx.lineWidth = major ? 1.2 : 0.7;
+            wx.translate(0, 0.75);
+            wx.globalAlpha = major ? 0.3 : 0.18;
+            wx.lineWidth = major ? 1 : 0.6;
             wx.strokeStyle = 'rgba(255,253,244,0.9)';
             wx.stroke(bands[l]);
             wx.restore();
-            wx.globalAlpha = major ? 0.15 : 0.07;
-            wx.lineWidth = major ? 1.2 : 0.7;
+            wx.globalAlpha = major ? 0.3 : 0.17;
+            wx.lineWidth = major ? 1 : 0.6;
             wx.strokeStyle = 'rgb(32,37,58)';
             wx.stroke(bands[l]);
           }
