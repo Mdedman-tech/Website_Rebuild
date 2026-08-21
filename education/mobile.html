@@ -1104,7 +1104,7 @@
             <button onClick="{{ copyJournal }}" style="flex:1;min-height:48px;background:var(--ns-bronze);color:var(--ns-midnight);border:none;border-radius:4px;cursor:pointer;font-family:var(--font-sans);font-size:calc(12.5px * var(--text-scale));font-weight:600;letter-spacing:0.1em;text-transform:uppercase;box-shadow:var(--shadow-bronze);">{{ journalCopyLabel }}</button>
             <button onClick="{{ downloadJournal }}" style="flex:1;min-height:48px;background:var(--ns-midnight);color:var(--ns-arctic);border:none;border-radius:4px;cursor:pointer;font-family:var(--font-sans);font-size:calc(12.5px * var(--text-scale));font-weight:600;letter-spacing:0.1em;text-transform:uppercase;">Download .txt</button>
           </div>
-          <p style="margin:16px 0 0;font-family:var(--font-sans);font-size:calc(9.5px * var(--text-scale));font-weight:600;letter-spacing:0.2em;color:var(--text-faint);text-transform:uppercase;display:none;">Natural State Medicinals · Permit No. {{ permit }}</p>
+          
         </div>
       </div>
     </div>
@@ -1356,7 +1356,7 @@
   <footer style="position:relative;background:var(--ns-midnight);padding:56px 24px 40px;text-align:center;overflow:hidden;">
     <a href="../index.html#doors" title="Back to naturalstatemeds.com" style="display:block;text-decoration:none;"><img src="../assets/brand/ns-monogram-gold.png" alt="Natural State Medicinals" style="width:52px;height:auto;object-fit:contain;margin:0 auto 16px;display:block;"></a>
     <p style="margin:0;font-family:var(--font-display);font-size:calc(26px * var(--text-scale));line-height:1.1;color:var(--ns-arctic);">Find your natural state.</p>
-    <p style="margin:16px auto 0;max-width:40ch;font-family:var(--font-sans);font-size:calc(11.5px * var(--text-scale));line-height:1.7;color:var(--text-on-dark-mut);display:none;">Natural State Medicinals · Permit No. {{ permit }} · Est. {{ est }} · {{ place }}</p>
+    
     <p style="margin:18px auto 0;max-width:44ch;font-family:var(--font-sans);font-size:calc(10.5px * var(--text-scale));line-height:1.6;color:rgba(245,244,225,0.42);">For use by qualifying patients only. Keep out of reach of children. This product is not approved by the FDA to treat, cure, or prevent any disease. Marijuana use during pregnancy or breastfeeding poses potential harms. This guide is education, not medical advice.</p>
   </footer>
 
@@ -1964,7 +1964,7 @@ class Component extends DCLogic {
     return {
       quiz, openQuiz:()=>this.openQuiz(), stopProp:(e)=>{ if(e&&e.stopPropagation) e.stopPropagation(); },
       journalText, journalFieldCount, copyJournal:()=>this.copyJournal(), downloadJournal:()=>this.downloadJournal(), journalCopyLabel: st.journalCopied?'Copied \u2713':'Copy template',
-      permit:meta.permit||'00088', est:meta.est||2018, place:meta.place||'Pine Bluff / White Hall, AR',
+      est:meta.est||2018, place:meta.place||'Arkansas',
       chapters,
       goHome:()=>this.goHome(), toggleNav:()=>this.toggleNav(), closeNav:()=>this.closeNav(), navOpen:st.navOpen, goFlower:()=>this.goFlower(),
       kSystem:this._k('The Endocannabinoid System'), kEntourage:this._k('The Entourage Effect'), kCannabinoids:this._k('Minor cannabinoids, CBD, CBG, CBN, CBC'),
