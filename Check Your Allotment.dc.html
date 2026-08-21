@@ -316,12 +316,17 @@ class Component extends DCLogic {
       this._onStrip = () => { if (!raf) raf = requestAnimationFrame(draw); };
       addEventListener('scroll', this._onStrip, { passive: true });
       addEventListener('resize', this._onStrip);
+      document.addEventListener('scroll', this._onStrip, { capture: true, passive: true });
       draw();
     }
   }
   componentWillUnmount() {
     if (this._io) this._io.disconnect();
-    if (this._onStrip) { removeEventListener('scroll', this._onStrip); removeEventListener('resize', this._onStrip); }
+    if (this._onStrip) {
+      removeEventListener('scroll', this._onStrip);
+      removeEventListener('resize', this._onStrip);
+      document.removeEventListener('scroll', this._onStrip, { capture: true });
+    }
   }
   renderVals() {
     return {

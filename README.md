@@ -12,6 +12,8 @@ no package manager.
 | `About Us.dc.html` | About us |
 | `How to Get a Card.dc.html` | How to get a card (seven chapters, fixed chapter rail) |
 | `Check Your Allotment.dc.html` | Check your allotment (state Limit Meter walkthrough) |
+| `Contact Us.dc.html` | Contact us (form posts to a Google Sheet) |
+| `Your Paperwork.dc.html` | Your paperwork (form checklist and downloads) |
 
 ## Supporting scripts
 
@@ -32,8 +34,8 @@ reduced-motion both land correctly.
 ## Published site
 
 GitHub Pages serves the repo root at
-https://mdedman-tech.github.io/Website_Rebuild/. Four single-file builds sit there
-with every asset inlined:
+https://mdedman-tech.github.io/Website_Rebuild/. Six single-file builds sit there with every asset inlined, plus the education
+guide, which stays as loose files under `education/`:
 
 | URL | Page |
 |---|---|
@@ -41,11 +43,14 @@ with every asset inlined:
 | `about.html` | About us |
 | `get-a-card.html` | How to get a card |
 | `allotment.html` | Check your allotment |
+| `contact.html` | Contact us |
+| `paperwork.html` | Your paperwork |
+| `education/index.html` | Education guide (routes to desktop or mobile) |
 
 These are generated output, not source. Do not edit them. Regenerate from the
 `.dc.html` pages: each `*.src.html` is the inliner input, and it is the `.dc.html`
 plus a thumbnail template, with cross-page `.dc.html` links rewritten to the clean
-published filenames above. Rebuild all four whenever any page changes, so the links
+published filenames above. Rebuild all six whenever any page changes, so the links
 between them stay consistent.
 
 `.nojekyll` keeps Pages from running the files through Jekyll.
@@ -94,30 +99,42 @@ Then open http://localhost:8000/Natural%20State%20Medicinals.dc.html
 
 ## Education guide
 
-The guide lives in its own repo and is served by GitHub Pages. In-site
-Education links point at that URL for now, because GitHub Pages, the demo host,
-cannot serve another site under our own path.
+The guide now lives in this repo under `education/`, so it is part of the site
+instead of a link out to another host. In-site Education links point at
+`education/index.html`.
 
-Go-live plan on Wix: Wix has no rewrite or proxy feature, so the guide cannot be
-served from naturalstatemeds.com by Wix alone. Put Cloudflare in front of the
-domain instead:
+- `education/index.html` routes phones to `mobile.html`, everything else to
+  `desktop.html`. `?v=desktop` or `?v=mobile` forces one.
+- `education/support.js` and `education/guide-data.js` belong to the guide.
+  `support.js` at the root is the site's own runtime. They are different files.
+- Guide images, fonts, and design tokens resolve up one level, into the shared
+  `assets/` and `_ds/` trees. The guide's own copies were merged in, so nothing
+  is duplicated.
+- `_ds/overbuilt-design-system-3b590326.../` is the guide's token set, kept
+  alongside the site's design system. Both are needed.
+- `.nojekyll` at the root is what lets `_ds/` serve on GitHub Pages. Do not
+  remove it.
 
-1. Move DNS for naturalstatemeds.com to Cloudflare, proxied. Wix keeps serving
-   the site.
-2. Add a Worker on the route naturalstatemeds.com/education/* that fetches from
-   mdedman-tech.github.io/Natural-State-Education-Guide/ and returns the
-   response. Everything else falls through to Wix untouched.
-3. Change the four Education links to /education/. They are in:
-   Natural State Medicinals.dc.html, Landing Standalone.src.html,
-   About Us.dc.html, How to Get a Card.dc.html.
-4. Confirm the guide's own CSS, fonts, and images load. If any of its paths
-   start at the site root they will 404 through the proxy and need to be made
-   relative, or the guide needs its base path set to /education/.
+Deep links still work: `education/index.html#strain/dogtown` survives the
+redirect. The Cloudflare Worker plan is no longer needed.
 
 ## Not yet built
 
-Find our product, and Contact. The product locator still points to a live
-external URL.
+Find our product. The locator still points to a live external URL.
+
+## The contact form is not connected
+
+`Contact Us.dc.html` posts to a Google Apps Script web app. The URL is a single
+constant at the top of the logic class:
+
+    const SHEET_ENDPOINT = '';
+
+While it is empty the form refuses to send and says so plainly, rather than
+swallowing a note. To connect it: make a Sheet, Extensions then Apps Script, a
+`doPost(e)` that appends `e.parameter` as a row, deploy as a web app with access
+set to anyone, then paste the `/exec` URL into that constant and rebuild
+`contact.html`. Posts arrive as `route`, `sent`, `name`, `email`, `message`,
+and on the complaint path also `dispensary`, `purchased`, and `lot`.
 
 ## Open items
 
