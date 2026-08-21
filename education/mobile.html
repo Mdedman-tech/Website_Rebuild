@@ -100,10 +100,10 @@
   <!-- ============ STICKY BAR ============ -->
   <div id="nsm-mbar" style="position:fixed;top:0;left:0;right:0;z-index:80;min-height:46px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:4px 16px;border-bottom:1px solid transparent;transition:background .35s ease,border-color .35s ease;">
     <div id="nsm-mprog" style="position:absolute;top:0;left:0;height:2px;width:0;background:var(--ns-bronze);"></div>
-    <button onClick="{{ goHome }}" style="display:flex;align-items:center;gap:9px;background:none;border:none;cursor:pointer;padding:6px 2px;">
+    <a href="../index.html#doors" title="Back to naturalstatemeds.com" style="display:flex;align-items:center;gap:9px;padding:6px 2px;text-decoration:none;">
       <img src="../assets/brand/nav-mark-fanleaf.png" alt="" style="width:24px;height:22px;object-fit:contain;">
       <span style="font-family:var(--font-sans);font-size:calc(11px * var(--text-scale));font-weight:600;letter-spacing:0.16em;color:var(--ns-arctic);text-transform:uppercase;">Natural State</span>
-    </button>
+    </a>
     <div style="display:flex;align-items:center;gap:12px;">
       <span style="font-family:var(--font-sans);font-size:calc(11px * var(--text-scale));letter-spacing:0.04em;color:var(--ns-bronze);font-weight:600;"><span id="nsm-mpct">0%</span></span>
       <button onClick="{{ toggleNav }}" aria-label="Open contents" style="display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center;width:44px;height:44px;background:rgba(183,149,80,0.14);border:1px solid rgba(183,149,80,0.4);border-radius:8px;cursor:pointer;">
@@ -169,7 +169,7 @@
         <img src="../assets/brand/contents-lockup.png" alt="Natural State Medicinals" style="width:min(58vw,190px);height:auto;object-fit:contain;display:block;margin:0 auto;">
       </div>
       <div style="display:flex;justify-content:center;margin:-18px 0 28px;">
-        <a href="../index.html" style="font-family:var(--font-sans);font-size:calc(11px * var(--text-scale));font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--ns-bronze);text-decoration:none;display:inline-block;min-height:44px;line-height:44px;padding:0 20px;border:1px solid rgba(183,149,80,0.5);border-radius:4px;">Back to the site</a>
+        <a href="../index.html#doors" style="font-family:var(--font-sans);font-size:calc(11px * var(--text-scale));font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--ns-bronze);text-decoration:none;display:inline-block;min-height:44px;line-height:44px;padding:0 20px;border:1px solid rgba(183,149,80,0.5);border-radius:4px;">Back to the site</a>
       </div>
       <div style="display:flex;flex-direction:column;">
         <sc-for list="{{ chapters }}" as="c" hint-placeholder-count="12">
@@ -1354,7 +1354,7 @@
 
   <!-- ============ FOOTER ============ -->
   <footer style="position:relative;background:var(--ns-midnight);padding:56px 24px 40px;text-align:center;overflow:hidden;">
-    <img src="../assets/brand/ns-monogram-gold.png" alt="" style="width:52px;height:auto;object-fit:contain;margin:0 auto 16px;display:block;">
+    <a href="../index.html#doors" title="Back to naturalstatemeds.com" style="display:block;text-decoration:none;"><img src="../assets/brand/ns-monogram-gold.png" alt="Natural State Medicinals" style="width:52px;height:auto;object-fit:contain;margin:0 auto 16px;display:block;"></a>
     <p style="margin:0;font-family:var(--font-display);font-size:calc(26px * var(--text-scale));line-height:1.1;color:var(--ns-arctic);">Find your natural state.</p>
     <p style="margin:16px auto 0;max-width:40ch;font-family:var(--font-sans);font-size:calc(11.5px * var(--text-scale));line-height:1.7;color:var(--text-on-dark-mut);display:none;">Natural State Medicinals · Permit No. {{ permit }} · Est. {{ est }} · {{ place }}</p>
     <p style="margin:18px auto 0;max-width:44ch;font-family:var(--font-sans);font-size:calc(10.5px * var(--text-scale));line-height:1.6;color:rgba(245,244,225,0.42);">For use by qualifying patients only. Keep out of reach of children. This product is not approved by the FDA to treat, cure, or prevent any disease. Marijuana use during pregnancy or breastfeeding poses potential harms. This guide is education, not medical advice.</p>

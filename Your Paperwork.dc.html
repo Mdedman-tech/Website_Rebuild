@@ -104,7 +104,7 @@
       </div>
       <span style="display:block; margin-top:clamp(28px,4vw,52px); font-family:var(--font-label); font-size:12px; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:rgba(183,149,80,.95)">For Arkansas patients</span>
       <h1 style="margin:16px 0 0; max-width:20ch; font-family:var(--font-display); font-weight:400; font-size:clamp(38px,6.4vw,74px); line-height:1.02; letter-spacing:.005em; color:#F5F4E1">Your paperwork</h1>
-      <p style="margin:20px 0 0; max-width:46ch; font-size:clamp(18px,1.7vw,22px); line-height:1.6; color:rgba(245,244,225,.82)">Everything the state needs from you, in one place. Take all of it, or answer three questions and take only what you need.</p>
+      <p style="margin:20px 0 0; max-width:46ch; font-size:clamp(18px,1.7vw,22px); line-height:1.6; color:rgba(245,244,225,.82)">Everything the state needs from you, in one place. Take all of it, or answer a few questions and take only what you need.</p>
     </div>
   </div>
 
@@ -122,9 +122,9 @@
 
       <sc-if value="{{ asking }}" hint-placeholder-val="{{ false }}">
         <div style="margin:clamp(28px,3.4vw,40px) 0 0; padding:clamp(24px,3vw,34px) 0; border-top:1px solid var(--hair); border-bottom:1px solid var(--hair)">
-          <span class="ns-kicker">Three questions</span>
+          <span class="ns-kicker">A few questions</span>
           <div style="margin-top:10px">
-            <sc-for list="{{ questions }}" as="q" hint-placeholder-count="3">
+            <sc-for list="{{ questions }}" as="q" hint-placeholder-count="4">
               <div style="padding:20px 0; border-bottom:1px solid var(--hair)">
                 <span style="display:block; max-width:46ch; font-family:var(--font-display); font-weight:400; font-size:clamp(20px,1.9vw,25px); line-height:1.16">{{ q.text }}</span>
                 <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap">
@@ -228,10 +228,11 @@ const DOCS = [
     href: 'https://www.healthy.arkansas.gov/programs-services/data-statistics-registries/medical-marijuana/' }
 ];
 
-// A patient almost always needs one form. Three plain questions sort out
+// A patient almost always needs one form. Four plain questions sort out
 // whether they are the exception, and tick the boxes for them.
 const QUESTIONS = [
   { key: 'first', text: 'Is this your first Arkansas card?', gives: ['patient'] },
+  { key: 'renew', text: 'Is your card up for renewal in the next sixty days?', gives: ['patient'] },
   { key: 'helper', text: 'Will somebody else pick up your medicine for you?', gives: ['caregiver'] },
   { key: 'changed', text: 'Do you already hold a card, and something changed, like your address or your name?', gives: ['change'] }
 ];
@@ -291,7 +292,7 @@ class Component extends DCLogic {
       answerLine: answered === 0
         ? 'Answer these and I will tick the right boxes for you below.'
         : (allNo
-          ? 'Then you do not need a new form right now. Your card already lives on the state portal, ticked below, and that is where you can pull it up.'
+          ? 'Then there is nothing new to fill out today. Your card lives on the state portal, ticked below, and that is where you pull it up. Come back when renewal is sixty days out.'
           : 'Ticked below: ' + picked.map(d => d.name).join(', ') + '. Everything else you can leave alone.'),
       docs: DOCS.map(d => ({
         name: d.name, note: d.note, href: d.href, cta: d.cta,
@@ -311,7 +312,7 @@ class Component extends DCLogic {
         { name: 'The application, filled out', note: 'Your part and your doctor\u2019s part. It is one document.' },
         { name: 'The page your doctor signed', note: 'Good for thirty days from the day they sign it, and not a day longer.' },
         { name: 'A photocopy of your ID', note: 'The front of your Arkansas license or state ID, on a full sheet of paper.' },
-        { name: 'Fifty dollars', note: 'To the Department of Health. You do not get it back, and renewals cost the same.' }
+        { name: 'Fifty dollars', note: 'To the Department of Health, once a year. Renewals cost the same.' }
       ]
     };
   }

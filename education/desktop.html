@@ -320,6 +320,7 @@
     section, .nsm-card, [id^="strain-"] { break-inside: avoid; page-break-inside: avoid; }
     [data-chapter] { padding-top: 28px !important; padding-bottom: 28px !important; }
   }
+  @media (max-width: 860px) { .nsm-recipe-intro { grid-template-columns: 1fr !important; } }
 </style>
 </helmet>
 
@@ -333,11 +334,11 @@
   <div id="nsm-nav" data-chapter-nav="" class="nsm-no-print" style="position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;gap:16px;height:54px;padding:env(safe-area-inset-top,0px) clamp(16px,4vw,40px) 0;border-bottom:1px solid transparent;transition:background .35s ease, border-color .35s ease;">
     <div id="nsm-progress" style="position:absolute;top:0;left:0;height:2px;width:0;background:var(--ns-bronze);"></div>
 
-    <button onClick="{{ goHome }}" style="display:flex;align-items:center;gap:11px;background:none;border:none;cursor:pointer;padding:0;">
+    <a href="../index.html#doors" title="Back to naturalstatemeds.com" style="display:flex;align-items:center;gap:11px;text-decoration:none;">
       <span aria-hidden="true" style="flex:none;position:relative;display:block;width:26px;height:26px;"><img class="nsm-nav-leaf-w" src="../assets/brand/nav-mark-fanleaf.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:1;transition:opacity .28s cubic-bezier(0.2,0.7,0.25,1);"><img class="nsm-nav-leaf-g" src="../assets/brand/nav-mark-fanleaf-gold.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .28s cubic-bezier(0.2,0.7,0.25,1);"></span>
       <span class="nsm-brand-mark" style="display:none;font-family:var(--font-sans);font-size:calc(14px * var(--text-scale));font-weight:600;letter-spacing:0.14em;color:var(--ns-arctic);">NSM</span>
       <span data-navtext="" style="font-family:var(--font-sans);font-size:calc(11.5px * var(--text-scale));font-weight:600;letter-spacing:0.18em;color:var(--ns-arctic);">Natural State Medicinals</span>
-    </button>
+    </a>
 
     <div style="display:flex;align-items:center;gap:clamp(10px,2vw,18px);">
       <button onClick="{{ toggleSearch }}" aria-label="Search the guide" style="display:flex;align-items:center;gap:9px;background:rgba(245,244,225,0.08);border:1px solid rgba(183,149,80,0.45);border-radius:999px;cursor:pointer;padding:7px 14px;" style-hover="border-color:var(--ns-bronze);">
@@ -371,7 +372,7 @@
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:clamp(28px,5vh,56px);">
         <span style="display:inline-flex;align-items:center;gap:clamp(14px,2vw,22px);"><img src="../assets/brand/contents-lockup.png" alt="Natural State Medicinals" style="flex:none;width:clamp(64px,8vw,96px);height:auto;display:block;"><span style="font-family:var(--font-display);font-weight:400;font-size:clamp(calc(24px * var(--text-scale)),3.4vw,calc(40px * var(--text-scale)));line-height:1.04;letter-spacing:0.05em;color:var(--ns-bronze);">The Doobie<br>Decimal System</span></span>
         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;">
-          <a href="../index.html" style="font-family:var(--font-sans);font-size:calc(11px * var(--text-scale));font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--ns-bronze);text-decoration:none;padding:10px 16px;border:1px solid rgba(183,149,80,0.5);border-radius:4px;">Back to the site</a>
+          <a href="../index.html#doors" style="font-family:var(--font-sans);font-size:calc(11px * var(--text-scale));font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--ns-bronze);text-decoration:none;padding:10px 16px;border:1px solid rgba(183,149,80,0.5);border-radius:4px;">Back to the site</a>
           <div style="display:inline-flex;align-items:center;gap:8px;">
             <span style="font-family:var(--font-sans);font-size:calc(11px * var(--text-scale));font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-on-dark-mut);">Text size</span>
             <div style="display:inline-flex;border:1px solid var(--border-on-dark);border-radius:999px;overflow:hidden;">
@@ -762,7 +763,7 @@
             <span style="font-family:var(--font-sans);font-size:clamp(calc(36px * var(--text-scale)),6vw,calc(72px * var(--text-scale)));line-height:0.8;color:var(--ns-bronze);">02</span>
             <div style="flex:1;">
               <span style="font-family:var(--font-sans);font-size:calc(12px * var(--text-scale));font-weight:600;letter-spacing:0.22em;color:rgba(245,244,225,0.85);">Chapter Two</span>
-              <h2 style="margin:6px 0 0;font-family:var(--font-sans);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5vw,calc(60px * var(--text-scale)));line-height:0.98;color:var(--ns-arctic);">The Entourage Effect</h2>
+              <h2 style="margin:6px 0 0;font-family:var(--font-display);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5vw,calc(60px * var(--text-scale)));line-height:0.98;color:var(--ns-arctic);">The Entourage Effect</h2>
             </div>
           </div>
           <p data-reveal="" data-rd="80" style="opacity:0;transform:translateY(22px);margin:clamp(28px,4vh,44px) 0 0;max-width:22ch;font-family:var(--font-sans);font-weight:300;font-size:clamp(calc(23px * var(--text-scale)),2.8vw,calc(38px * var(--text-scale)));line-height:1.22;letter-spacing:-0.01em;color:var(--ns-arctic);">Think of the plant as an orchestra, not a soloist.</p>
@@ -821,7 +822,7 @@
         <span style="font-family:var(--font-sans);font-size:clamp(calc(36px * var(--text-scale)),7vw,calc(82px * var(--text-scale)));line-height:0.8;color:var(--ns-bronze);">03</span>
         <div style="flex:1;">
           <span style="font-family:var(--font-sans);font-size:calc(12px * var(--text-scale));font-weight:600;letter-spacing:0.22em;color:var(--text-muted);">Chapter Three</span>
-          <h2 style="margin:6px 0 0;font-family:var(--font-sans);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--text-strong);">Cannabinoids</h2>
+          <h2 style="margin:6px 0 0;font-family:var(--font-display);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--text-strong);">Cannabinoids</h2>
         </div>
       </div>
       <p data-reveal="" data-rd="80" style="opacity:0;transform:translateY(22px);margin:clamp(36px,5vh,60px) 0 clamp(36px,5vh,56px);max-width:54ch;font-size:clamp(calc(17px * var(--text-scale)),1.7vw,calc(21px * var(--text-scale)));line-height:1.7;color:var(--text-body);">The headlines usually belong to THC, yet much of the plant's character comes from lesser-known cannabinoids. There are more than one hundred identified so far. These five do most of the talking. Scroll to move through each one.</p>
@@ -952,7 +953,7 @@
         <span style="font-family:var(--font-sans);font-size:clamp(calc(36px * var(--text-scale)),7vw,calc(82px * var(--text-scale)));line-height:0.8;color:var(--ns-bronze);">05</span>
         <div style="flex:1;">
           <span style="font-family:var(--font-sans);font-size:calc(12px * var(--text-scale));font-weight:600;letter-spacing:0.22em;color:var(--text-muted);">Chapter Five</span>
-          <h2 style="margin:6px 0 0;font-family:var(--font-sans);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--text-strong);">Terpenes</h2>
+          <h2 style="margin:6px 0 0;font-family:var(--font-display);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--text-strong);">Terpenes</h2>
         </div>
       </div>
       <p data-reveal="" data-rd="80" style="opacity:0;transform:translateY(22px);margin:clamp(36px,5vh,60px) 0 clamp(32px,4vh,48px);max-width:56ch;font-size:clamp(calc(17px * var(--text-scale)),1.7vw,calc(21px * var(--text-scale)));line-height:1.7;color:var(--text-body);">Terpenes are the aromatic oils that give each cultivar its smell, its flavor, and much of its feel. They are the fingerprint of a strain. Choose one to explore.</p>
@@ -1037,7 +1038,7 @@
         <span style="font-family:var(--font-sans);font-size:clamp(calc(36px * var(--text-scale)),7vw,calc(82px * var(--text-scale)));line-height:0.8;color:var(--ns-bronze);">06</span>
         <div style="flex:1;">
           <span style="font-family:var(--font-sans);font-size:calc(12px * var(--text-scale));font-weight:600;letter-spacing:0.22em;color:var(--text-muted);">Chapter Six</span>
-          <h2 style="margin:6px 0 0;font-family:var(--font-sans);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--text-strong);">The Flower</h2>
+          <h2 style="margin:6px 0 0;font-family:var(--font-display);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--text-strong);">The Flower</h2>
         </div>
         <span style="font-family:var(--font-sans);font-size:clamp(calc(20px * var(--text-scale)),2.4vw,calc(30px * var(--text-scale)));color:var(--text-muted);white-space:nowrap;">{{ strainTotal }} cultivars</span>
       </div>
@@ -1398,7 +1399,7 @@
       <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(32,37,58,0.18) 0%, rgba(32,37,58,0.04) 42%, rgba(32,37,58,0.82) 100%);"></div>
       <div data-reveal="" style="opacity:0;transform:translateY(22px);position:absolute;left:0;right:0;bottom:0;padding:clamp(28px,6vw,80px);max-width:1180px;margin:0 auto;">
         <span style="font-family:var(--font-sans);font-size:calc(12px * var(--text-scale));font-weight:600;letter-spacing:0.24em;color:#d8bd82;">Chapter Seven &nbsp;·&nbsp; The people behind the plant</span>
-        <h2 style="margin:14px 0 0;font-family:var(--font-sans);font-weight:400;font-size:clamp(calc(40px * var(--text-scale)),8vw,calc(104px * var(--text-scale)));line-height:0.92;letter-spacing:0.01em;color:var(--ns-arctic);">How it's grown</h2>
+        <h2 style="margin:14px 0 0;font-family:var(--font-display);font-weight:400;font-size:clamp(calc(40px * var(--text-scale)),8vw,calc(104px * var(--text-scale)));line-height:0.92;letter-spacing:0.01em;color:var(--ns-arctic);">How it's grown</h2>
         <p style="margin:18px 0 0;max-width:52ch;font-family:var(--font-sans);font-size:clamp(calc(15px * var(--text-scale)),1.7vw,calc(19px * var(--text-scale)));line-height:1.6;color:rgba(245,244,225,0.9);">Every gram that reaches you started as a cutting in someone's gloved hands. Here at Natural State, the people who grow your medicine are your neighbors, and they treat the plant that way.</p>
       </div>
     </div>
@@ -1523,7 +1524,7 @@
         <span style="font-family:var(--font-sans);font-size:clamp(calc(36px * var(--text-scale)),7vw,calc(82px * var(--text-scale)));line-height:0.8;color:var(--ns-bronze);">08</span>
         <div style="flex:1;">
           <span style="font-family:var(--font-sans);font-size:calc(12px * var(--text-scale));font-weight:600;letter-spacing:0.22em;color:rgba(245,244,225,0.85);">Chapter Eight</span>
-          <h2 style="margin:6px 0 0;font-family:var(--font-sans);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--ns-arctic);">Plant to Product</h2>
+          <h2 style="margin:6px 0 0;font-family:var(--font-display);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--ns-arctic);">Plant to Product</h2>
         </div>
       </div>
       <figure data-reveal="" data-rd="60" style="opacity:0;transform:translateY(22px);margin:clamp(32px,4.5vh,56px) 0 0;position:relative;overflow:hidden;border:1px solid var(--border-on-dark);">
@@ -1780,7 +1781,7 @@
         <span style="font-family:var(--font-sans);font-size:clamp(calc(36px * var(--text-scale)),7vw,calc(82px * var(--text-scale)));line-height:0.8;color:var(--ns-bronze);">09</span>
         <div style="flex:1;">
           <span style="font-family:var(--font-sans);font-size:calc(12px * var(--text-scale));font-weight:600;letter-spacing:0.22em;color:var(--text-muted);">Chapter Nine</span>
-          <h2 style="margin:6px 0 0;font-family:var(--font-sans);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--text-strong);">Using It Well</h2>
+          <h2 style="margin:6px 0 0;font-family:var(--font-display);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--text-strong);">Using It Well</h2>
         </div>
       </div>
 
@@ -2068,7 +2069,7 @@
         <span style="font-family:var(--font-sans);font-size:clamp(calc(36px * var(--text-scale)),7vw,calc(82px * var(--text-scale)));line-height:0.8;color:var(--ns-bronze);">10</span>
         <div style="flex:1;">
           <span style="font-family:var(--font-sans);font-size:calc(12px * var(--text-scale));font-weight:600;letter-spacing:0.22em;color:rgba(245,244,225,0.85);">Chapter Ten</span>
-          <h2 style="margin:6px 0 0;font-family:var(--font-sans);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--ns-arctic);">The Joint Journal</h2>
+          <h2 style="margin:6px 0 0;font-family:var(--font-display);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--ns-arctic);">The Joint Journal</h2>
         </div>
       </div>
 
@@ -2164,23 +2165,25 @@
         <span style="font-family:var(--font-sans);font-size:clamp(calc(36px * var(--text-scale)),7vw,calc(82px * var(--text-scale)));line-height:0.8;color:var(--ns-bronze);">11</span>
         <div style="flex:1;">
           <span style="font-family:var(--font-sans);font-size:calc(12px * var(--text-scale));font-weight:600;letter-spacing:0.22em;color:rgba(245,244,225,0.7);">Chapter Eleven &nbsp;·&nbsp; From the Kitchen</span>
-          <h2 style="margin:6px 0 0;font-family:var(--font-sans);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--ns-arctic);">Recipes</h2>
+          <h2 style="margin:6px 0 0;font-family:var(--font-display);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--ns-arctic);">Recipes</h2>
         </div>
       </div>
 
-      <p data-reveal="" data-rd="60" style="opacity:0;transform:translateY(22px);margin:clamp(28px,4vh,44px) 0 clamp(26px,3.4vh,38px);max-width:60ch;font-size:clamp(calc(16px * var(--text-scale)),1.7vw,calc(20px * var(--text-scale)));line-height:1.7;color:rgba(245,244,225,0.82);">Fifteen ways to put NSM products to work. Start low on the dose, give it time, and eat something good.</p>
+      <div data-reveal="" data-rd="60" class="nsm-recipe-intro" style="opacity:0;transform:translateY(22px);margin:clamp(28px,4vh,44px) 0 clamp(26px,3.4vh,38px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);align-items:start;">
+        <p style="margin:0;font-size:clamp(calc(18px * var(--text-scale)),2.1vw,calc(26px * var(--text-scale)));line-height:1.45;color:var(--ns-arctic);">Fifteen ways to put NSM products to work. Start low on the dose, give it time, and eat something good.</p>
+        <p style="margin:0;font-size:clamp(calc(15px * var(--text-scale)),1.4vw,calc(17px * var(--text-scale)));line-height:1.75;color:rgba(245,244,225,0.82);">Cooking with cannabis is its own kind of dosing. Make your base, dose it right, then scroll through the fifteen recipes built on it below. Start low, label everything, and keep it away from anyone it is not meant for.</p>
+      </div>
 
       <!-- recipes -->
       <div data-reveal="" style="opacity:0;transform:translateY(22px);margin-top:clamp(36px,5vh,60px);">
         <div style="display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--ns-bronze);padding-bottom:14px;margin-bottom:clamp(20px,3vh,30px);">
           <span style="font-family:var(--font-sans);font-size:calc(11px * var(--text-scale));font-weight:600;letter-spacing:0.2em;color:var(--ns-bronze);">From the Natural State Kitchen to Yours</span>
         </div>
-        <p style="margin:0 0 clamp(22px,3vh,32px);max-width:60ch;font-size:clamp(calc(16px * var(--text-scale)),1.6vw,calc(19px * var(--text-scale)));line-height:1.7;color:rgba(245,244,225,0.82);">Cooking with cannabis is its own kind of dosing. Make your base, dose it right, then scroll through the fifteen recipes built on it below. Start low, label everything, and keep it away from anyone it is not meant for.</p>
         <!-- make your base: extraction + infused oils -->
         <div style="background:var(--ns-midnight);padding:clamp(26px,3.4vw,44px);margin-bottom:clamp(20px,3vh,30px);">
           <span style="font-family:var(--font-sans);font-size:calc(11px * var(--text-scale));font-weight:600;letter-spacing:0.2em;color:var(--ns-bronze);">Start here, make your base</span>
           <h3 id="sec-decarb" style="margin:10px 0 14px;font-family:var(--font-display);font-weight:400;font-size:clamp(calc(24px * var(--text-scale)),3vw,calc(38px * var(--text-scale)));letter-spacing:0.01em;color:var(--ns-arctic);">Before you cook, make the medicine</h3>
-          <p style="margin:0 0 8px;font-family:var(--font-sans);max-width:70ch;font-size:calc(15px * var(--text-scale));line-height:1.7;color:rgba(245,244,225,0.82);">Almost every recipe below is built on an infused base, a fat or a sweetener that carries the cannabinoids into the dish. We make an infused <strong style="color:var(--ns-arctic);">tincture</strong> you can substitute straight in, but the oil, butter, sugar, and cooking tincture you will make yourself. Here is the whole base, start to finish.</p>
+          <p style="margin:0 0 8px;font-family:var(--font-sans);max-width:88ch;font-size:calc(15px * var(--text-scale));line-height:1.7;color:rgba(245,244,225,0.82);">Almost every recipe below is built on an infused base, a fat or a sweetener that carries the cannabinoids into the dish. We make an infused <strong style="color:var(--ns-arctic);">tincture</strong> you can substitute straight in, but the oil, butter, sugar, and cooking tincture you will make yourself. Here is the whole base, start to finish.</p>
           <div style="display:flex;flex-direction:column;gap:10px;margin-top:clamp(18px,2.4vh,26px);">
             <sc-for list="{{ baseSteps }}" as="b" hint-placeholder-count="5">
               <div style="background:var(--ns-midnight);border:1px solid var(--border-on-dark);">
@@ -2475,7 +2478,7 @@
         <span style="font-family:var(--font-sans);font-size:clamp(calc(36px * var(--text-scale)),7vw,calc(82px * var(--text-scale)));line-height:0.8;color:var(--ns-bronze);">13</span>
         <div style="flex:1;">
           <span style="font-family:var(--font-sans);font-size:calc(12px * var(--text-scale));font-weight:600;letter-spacing:0.22em;color:var(--text-muted);">Chapter Thirteen</span>
-          <h2 style="margin:6px 0 0;font-family:var(--font-sans);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--text-strong);">Glossary</h2>
+          <h2 style="margin:6px 0 0;font-family:var(--font-display);font-weight:400;font-size:clamp(calc(30px * var(--text-scale)),5.4vw,calc(68px * var(--text-scale)));line-height:0.98;color:var(--text-strong);">Glossary</h2>
         </div>
         <span style="font-family:var(--font-sans);font-size:clamp(calc(20px * var(--text-scale)),2.4vw,calc(30px * var(--text-scale)));color:var(--text-muted);white-space:nowrap;">{{ glossCount }} terms</span>
       </div>
@@ -2548,7 +2551,7 @@
   <footer style="position:relative;background:var(--ns-midnight);min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:clamp(80px,12vh,150px) clamp(20px,6vw,80px) clamp(120px,18vh,180px);overflow:hidden;">
     <div aria-hidden="true" style="position:absolute;top:-25%;left:50%;transform:translateX(-50%);width:90%;height:70%;background:radial-gradient(closest-side, rgba(183,149,80,0.10), rgba(32,37,58,0) 70%);pointer-events:none;"></div>
     <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:clamp(18px,3vh,30px);max-width:760px;margin:0 auto;">
-      <img src="../assets/brand/ns-monogram-gold.png" alt="Natural State Medicinals" style="width:clamp(96px,13vw,150px);height:auto;display:block;filter:drop-shadow(0 14px 38px rgba(0,0,0,0.5));">
+      <a href="../index.html#doors" title="Back to naturalstatemeds.com" style="display:block;text-decoration:none;"><img src="../assets/brand/ns-monogram-gold.png" alt="Natural State Medicinals" style="width:clamp(96px,13vw,150px);height:auto;display:block;filter:drop-shadow(0 14px 38px rgba(0,0,0,0.5));"></a>
       <h2 data-reveal="" style="opacity:0;transform:translateY(22px);margin:0;font-family:var(--font-sans);font-weight:400;font-size:clamp(calc(38px * var(--text-scale)),7vw,calc(92px * var(--text-scale)));line-height:0.96;letter-spacing:0.02em;color:var(--ns-arctic);">Find your<br>natural state.</h2>
       <div style="width:54px;height:2px;background:var(--ns-bronze);"></div>
       <p style="margin:0;font-family:var(--font-sans);font-size:clamp(calc(16px * var(--text-scale)),1.8vw,calc(20px * var(--text-scale)));color:var(--ns-bronze-light);">Of wellness, balance, and relief.</p>
